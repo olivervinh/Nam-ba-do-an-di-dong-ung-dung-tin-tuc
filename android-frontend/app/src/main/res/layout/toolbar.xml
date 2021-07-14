@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:title="danh mục"
+    android:id="@+id/toolbar"
+    android:theme="@style/Theme.AppCompat.Light"
+    android:background="@color/purple_700"
+    android:minHeight="?attr/actionBarSize"
+    app:navigationIcon="@drawable/menu"
+    android:layout_height="wrap_content">
+
+</androidx.appcompat.widget.Toolbar>

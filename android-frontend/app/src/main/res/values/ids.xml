@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="flContent" type="id" />
+    <item name="nvView" type="id" />
+    <item name="drawer_layout" type="id" />
+    <item name="descriptionBaiTap" type="id" />
+</resources>
