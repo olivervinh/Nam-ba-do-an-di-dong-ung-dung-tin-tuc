@@ -8,175 +8,235 @@
     android:layout_height="match_parent">
 
     <!-- This LinearLayout represents the contents of the screen  -->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="match_parent">
 
-        <!-- The ActionBar displayed at the top -->
-
-        <TextView
-            android:id="@+id/textView10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="287dp"
-            android:text="Video nổi bật"
-            app:layout_constraintStart_toEndOf="@+id/videoView2"
-            app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
-
-        <VideoView
-            android:id="@+id/videoView2"
-            android:layout_width="221dp"
-            android:layout_height="128dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="70dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/include" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="164dp"
-            android:layout_marginTop="28dp"
-            android:text="Tin nóng"
-            android:textSize="20sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
-
-        <include
-            layout="@layout/toolbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="match_parent">
 
-        <!-- The main content view where fragments are loaded -->
+            <!-- The ActionBar displayed at the top -->
 
-        <include
-            android:id="@+id/include"
-            layout="@layout/item1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="80dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
+            <VideoView
+                android:id="@+id/videoView2"
+                android:layout_width="221dp"
+                android:layout_height="128dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="50dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewAllbtn" />
 
-        <include
-            layout="@layout/item2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="80dp"
-            app:layout_constraintStart_toEndOf="@+id/include"
-            app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
-
-        <include
-            layout="@layout/item3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
-            android:layout_marginEnd="47dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
-
-        <ViewFlipper
-            android:id="@+id/viewFlipper"
-            android:layout_width="416dp"
-            android:layout_height="155dp"
-            android:layout_marginTop="90dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/imageView1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/hinh1" />
-
-            <ImageView
-                android:id="@+id/imageViewd2"
-                android:layout_width="fill_parent"
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                android:src="@drawable/hinh2" />
+                android:layout_marginStart="164dp"
+                android:layout_marginTop="28dp"
+                android:text="Tin nóng"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
 
-            <ImageView
-                android:id="@+id/imageViewd3"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:scaleType="fitXY"
-                android:src="@drawable/hinh3" />
+            <include
+                layout="@layout/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-        </ViewFlipper>
+            <!-- The main content view where fragments are loaded -->
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/item1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="80dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
+
+            <include
+                android:id="@+id/include3"
+                layout="@layout/item2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="80dp"
+                app:layout_constraintStart_toEndOf="@+id/include"
+                app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
+
+            <include
+                android:id="@+id/include2"
+                layout="@layout/item3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="47dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
+
+            <include
+                android:id="@+id/include"
+                layout="@layout/item4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+            <include
+                android:id="@+id/include2"
+                layout="@layout/item6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="44dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+            <include
+                android:id="@+id/include6"
+                layout="@layout/item5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toEndOf="@+id/include"
+                app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+            <ViewFlipper
+                android:id="@+id/viewFlipper"
+                android:layout_width="416dp"
+                android:layout_height="155dp"
+                android:layout_marginTop="90dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/hinh1" />
+
+                <ImageView
+                    android:id="@+id/imageViewd2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/hinh2" />
+
+                <ImageView
+                    android:id="@+id/imageViewd3"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/hinh3" />
+
+            </ViewFlipper>
 
 
-        <Button
-            android:id="@+id/btnLuis"
-            android:layout_width="70dp"
-            android:layout_height="59dp"
-            android:layout_marginTop="120dp"
-            android:layout_marginBottom="60dp"
-            android:background="#8AFFFFFF"
-            android:foreground="@drawable/pre"
-            app:layout_constraintBottom_toBottomOf="@+id/viewFlipper"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/include14" />
+            <Button
+                android:id="@+id/btnLuis"
+                android:layout_width="70dp"
+                android:layout_height="59dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginBottom="60dp"
+                android:background="#8AFFFFFF"
+                android:foreground="@drawable/pre"
+                app:layout_constraintBottom_toBottomOf="@+id/viewFlipper"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/include14" />
 
-        <!-- The ActionBar displayed at the top -->
+            <!-- The ActionBar displayed at the top -->
 
-        <Button
-            android:id="@+id/btnTiep"
-            android:layout_width="70dp"
-            android:layout_height="72dp"
-            android:layout_marginTop="120dp"
-            android:layout_marginBottom="60dp"
-            android:background="#95FFFFFF"
-            android:foreground="@drawable/next"
-            app:layout_constraintBottom_toBottomOf="@+id/viewFlipper"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/include14" />
+            <Button
+                android:id="@+id/btnTiep"
+                android:layout_width="70dp"
+                android:layout_height="72dp"
+                android:layout_marginTop="120dp"
+                android:layout_marginBottom="60dp"
+                android:background="#95FFFFFF"
+                android:foreground="@drawable/next"
+                app:layout_constraintBottom_toBottomOf="@+id/viewFlipper"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/include14" />
 
-        <Button
-            android:id="@+id/btnPlayVideo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
-            android:layout_marginTop="28dp"
-            android:text="Phát"
-            app:layout_constraintStart_toEndOf="@+id/videoView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView10" />
+            <Button
+                android:id="@+id/btnPlayVideo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="30dp"
+                android:text="Phát"
+                app:layout_constraintStart_toEndOf="@+id/videoView2"
+                app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
-        <Button
-            android:id="@+id/viewAllbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="21dp"
-            android:text="Xem tất cả tin"
-            app:layout_constraintStart_toEndOf="@+id/textView8"
-            app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
+            <Button
+                android:id="@+id/btnPauseVideo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="15dp"
+                android:text="Dừng"
+                app:layout_constraintStart_toEndOf="@+id/videoView2"
+                app:layout_constraintTop_toBottomOf="@+id/btnPlayVideo" />
 
-        <TextView
-            android:id="@+id/txtXinChao"
-            android:layout_width="150sp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="9dp"
-            android:text="user"
-            app:layout_constraintBottom_toTopOf="@+id/viewFlipper"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <Button
+                android:id="@+id/viewAllbtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="139dp"
+                android:layout_marginTop="11dp"
+                android:text="Xem tất cả tin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include6" />
 
-        <!-- The main content view where fragments are loaded -->
+            <TextView
+                android:id="@+id/txtXinChao"
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="9dp"
+                android:text="user"
+                app:layout_constraintBottom_toTopOf="@+id/viewFlipper"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="168dp"
+                android:layout_marginTop="24dp"
+                android:text="Thời sự"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include3" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="33dp"
+                android:text="Video nổi bật"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewAllbtn" />
+
+            <!-- The main content view where fragments are loaded -->
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 
     <!-- The navigation drawer that comes from the left -->
     <!-- Note that `android:layout_gravity` needs to be set to 'start' -->
 
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nvView"
+        app:headerLayout="@layout/nav_header"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"

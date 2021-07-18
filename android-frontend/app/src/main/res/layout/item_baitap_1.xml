@@ -6,18 +6,18 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/imageItem1"
+        android:id="@+id/imageItembaitap1"
         android:layout_width="70dp"
         android:layout_height="72dp"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/titile1"
+        app:layout_constraintBottom_toTopOf="@+id/titlebaitap1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/hinh3" />
 
     <TextView
-        android:id="@+id/titile1"
+        android:id="@+id/titlebaitap1"
         android:layout_width="50sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -31,5 +31,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageItem1" />
+        app:layout_constraintTop_toBottomOf="@+id/imageItembaitap1" />
 </androidx.constraintlayout.widget.ConstraintLayout>

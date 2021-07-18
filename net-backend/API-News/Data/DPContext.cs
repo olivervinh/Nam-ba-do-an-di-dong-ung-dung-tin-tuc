@@ -12,12 +12,20 @@ namespace API_News.Data
         {
             
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserLikeArticles>().HasKey(sc => new { sc.IdArticle, sc.IdUser });
+            modelBuilder.Entity<UserSaveArticles>().HasKey(sc => new { sc.IdArticle, sc.IdUser });
+        }
         public virtual DbSet<Article> Articles { get; set; }
         public virtual DbSet<Category> Categories { get; set; }
 
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<User> Users { get; set; }
+
+        public virtual DbSet<UserLikeArticles> UserLikeArticles { get; set; }
+        public virtual DbSet<UserSaveArticles> UserSaveArticles { get; set; }
 
     }
 }

@@ -14,12 +14,12 @@ namespace API_News.Models
         public string Description { get; set; }
         public string Imagepath { get; set; }
         public int Status { get; set; }
-        public int LikeArticle { get; set; }
-        public int SaveArticle { get; set; }
         public int IdCategory { get; set; }
         [ForeignKey("IdCategory")]
         public virtual Category Category { get; set; }
         public virtual ICollection<Report> Reports { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual IList<UserLikeArticles> UserLikeArticles { get; set; }
+        public virtual IList<UserSaveArticles> UserSaveArticles { get; set; }
     }
 }

@@ -28,14 +28,14 @@ public class AllArtclesAdapter  extends RecyclerView.Adapter<AllArtclesAdapter.V
         this.articleList = articleArrayList;
         this.context = context;
     }
-    public void filterList(List<Article> filterllist) {
-        // below line is to add our filtered
-        // list in our course array list.
-        articleList = filterllist;
-        // below line is to notify our adapter
-        // as change in recycler view data.
-        notifyDataSetChanged();
-    }
+//    public void filterList(List<Article> filterllist) {
+//        // below line is to add our filtered
+//        // list in our course array list.
+//        articleList = filterllist;
+//        // below line is to notify our adapter
+//        // as change in recycler view data.
+//        notifyDataSetChanged();
+//    }
 
     @NonNull
     @NotNull
@@ -49,7 +49,7 @@ public class AllArtclesAdapter  extends RecyclerView.Adapter<AllArtclesAdapter.V
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-           Article article = articleList.get(position);
+        Article article = articleList.get(position);
         Picasso.with(context).load(article.getImagepath()).into(holder.image);
         holder.title.setText(article.getTitle());
         holder.btnXemChiTiet.setOnClickListener(new View.OnClickListener() {
@@ -62,7 +62,6 @@ public class AllArtclesAdapter  extends RecyclerView.Adapter<AllArtclesAdapter.V
             }
         });
     }
-
     @Override
     public int getItemCount() {
         return articleList.size();
@@ -75,7 +74,6 @@ public class AllArtclesAdapter  extends RecyclerView.Adapter<AllArtclesAdapter.V
         public ViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.textViewItemAllArticleTitle);
-            category = itemView.findViewById(R.id.textViewItemArticleCategory);
             image = itemView.findViewById(R.id.imageViewItemAllAtricle);
             btnXemChiTiet = itemView.findViewById(R.id.btnViewMoreItemArticle);
         }

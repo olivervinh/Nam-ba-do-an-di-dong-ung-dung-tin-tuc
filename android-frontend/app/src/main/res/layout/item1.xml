@@ -10,14 +10,14 @@
         android:layout_width="70dp"
         android:layout_height="72dp"
         android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/titile1"
+        app:layout_constraintBottom_toTopOf="@+id/title1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/hinh3" />
 
     <TextView
-        android:id="@+id/titile1"
+        android:id="@+id/title1"
         android:layout_width="50sp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

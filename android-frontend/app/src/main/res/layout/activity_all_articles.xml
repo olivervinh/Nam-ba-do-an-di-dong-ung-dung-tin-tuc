@@ -1,60 +1,116 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- This DrawerLayout has two children at the root  -->
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".AllArticlesActivity">
+    android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/btnQuaylaiAllArticle"
+    <!-- This LinearLayout represents the contents of the screen  -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <include
+                layout="@layout/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <Button
+                android:id="@+id/btnQuaylaiAllArticle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="60dp"
+                android:text="Quay lại"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="70dp"
+                android:text="Tất cả"
+                app:layout_constraintStart_toEndOf="@+id/btnQuaylaiAllArticle"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edtSearchAll"
+                android:layout_width="179dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="60dp"
+                android:ems="10"
+                android:hint="Tìm kiếm theo nội dung"
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyArticleAll"
+                android:layout_width="410dp"
+                android:layout_height="656dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/idSoKetQua" />
+
+<!--            <Button-->
+<!--                android:id="@+id/btnAllArtiTim"-->
+<!--                android:layout_width="58dp"-->
+<!--                android:layout_height="44dp"-->
+<!--                android:layout_marginTop="60dp"-->
+<!--                android:layout_marginEnd="19dp"-->
+<!--                android:layout_marginBottom="34dp"-->
+<!--                android:layout_margitarnSt="8dp"-->
+<!--                android:text="Tìm"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/recyArticleAll"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintStart_toEndOf="@+id/edtSearchAll"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+
+            <TextView
+                android:id="@+id/idSoKetQua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="6dp"
+                android:text="TextView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnQuaylaiAllArticle" />
+
+            <Button
+                android:id="@+id/btnAllArtiTim"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:text="Tìm"
+                app:layout_constraintBottom_toTopOf="@+id/recyArticleAll"
+                app:layout_constraintStart_toEndOf="@+id/edtSearchAll" />
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="223dp"
+                android:layout_height="17dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="8dp"
+                android:text="kết quả được tìm thấy"
+                app:layout_constraintStart_toEndOf="@+id/idSoKetQua"
+                app:layout_constraintTop_toBottomOf="@+id/btnQuaylaiAllArticle" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nvView"
+        app:headerLayout="@layout/nav_header"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:layout_marginTop="2dp"
-        android:text="Quay lại"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:text="Tất cả"
-        app:layout_constraintStart_toEndOf="@+id/btnQuaylaiAllArticle"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/edtSearchAll"
-        android:layout_width="189dp"
-        android:layout_height="43dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="2dp"
-        android:ems="10"
-        android:hint="Tìm kiếm theo tiêu đề"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyArticleAll"
-        android:layout_width="409dp"
-        android:layout_height="673dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtSearchAll" />
-
-    <Button
-        android:id="@+id/btnAllArtiTim"
-        android:layout_width="58dp"
-        android:layout_height="44dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:text="Tìm"
-        app:layout_constraintStart_toEndOf="@+id/edtSearchAll"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="@android:color/white"
+        app:menu="@menu/drawer_view" />
+</androidx.drawerlayout.widget.DrawerLayout>

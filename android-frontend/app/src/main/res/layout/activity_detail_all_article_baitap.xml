@@ -101,18 +101,18 @@
                     android:id="@+id/textView11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="148dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="152dp"
+                    android:layout_marginTop="30dp"
                     android:text="Tin tức liên quan"
                     app:layout_constraintBottom_toTopOf="@+id/include4"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/btnSaveArticle" />
+                    app:layout_constraintTop_toBottomOf="@+id/recylerViewBL" />
 
                 <include
                     android:id="@+id/include4"
                     layout="@layout/item_baitap_2"
                     android:layout_width="85dp"
-                    android:layout_height="91dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="49dp"
                     android:layout_marginTop="15dp"
                     app:layout_constraintStart_toEndOf="@+id/include5"
@@ -122,7 +122,7 @@
                     android:id="@+id/include5"
                     layout="@layout/item_baitap_1"
                     android:layout_width="89dp"
-                    android:layout_height="86dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="15dp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +131,7 @@
                 <include
                     layout="@layout/item_baitap_3"
                     android:layout_width="88dp"
-                    android:layout_height="91dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="37dp"
                     android:layout_marginTop="15dp"
                     app:layout_constraintStart_toEndOf="@+id/include4"
@@ -213,12 +213,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginEnd="42dp"
-                    android:layout_marginBottom="64dp"
                     android:text="Thích"
-                    app:layout_constraintBottom_toTopOf="@+id/include5"
                     app:layout_constraintEnd_toStartOf="@+id/btnSaveArticle"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/descriptionBaiTap" />
 
                 <Button
                     android:id="@+id/btnSaveArticle"
@@ -251,7 +251,7 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
-                    android:id="@+id/button4"
+                    android:id="@+id/btnReportDetail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
@@ -278,6 +278,26 @@
                     android:text="Nội dung: "
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageViewBaiTap" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="168dp"
+                    android:layout_marginTop="11dp"
+                    android:text="Bình luận "
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/btnSaveArticle" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recylerViewBL"
+                    android:layout_width="387dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="32dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 

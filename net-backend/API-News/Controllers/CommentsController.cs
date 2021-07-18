@@ -22,10 +22,20 @@ namespace API_News.Controllers
         }
 
         // GET: api/Comments
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Comment>>> GetComments()
+        [HttpGet("usercomment/{idArticle}")]
+        public async Task<ActionResult<IEnumerable<CommentViewModel>>> GetComments(int idArticle)
         {
-            return await _context.Comments.ToListAsync();
+            var kb = from m in _context.Comments
+                     join u in _context.Users
+                     on m.IdUser equals u.Id
+                     select new CommentViewModel()
+                     {
+                         Content = m.Content,
+                         Id = m.Id,
+                         UserName = u.Fullname,
+                         IdArticle = m.IdArticle,
+                     };
+            return await kb.Where(s => s.IdArticle == idArticle).ToListAsync();
         }
 
         // GET: api/Comments/5
@@ -76,12 +86,19 @@ namespace API_News.Controllers
         // POST: api/Comments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Comment>> PostComment(Comment comment)
+        public async Task<ActionResult<Comment>> PostComment([FromForm] string idUser, [FromForm] string content, [FromForm] string idArticle)
         {
+            int iduser = int.Parse(idUser);
+            int idarticle = int.Parse(idArticle);
+            Comment comment = new Comment()
+            {
+                IdArticle = idarticle,
+                IdUser = iduser,
+                Content = content
+            };
             _context.Comments.Add(comment);
             await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetComment", new { id = comment.Id }, comment);
+            return Ok();
         }
 
         // DELETE: api/Comments/5

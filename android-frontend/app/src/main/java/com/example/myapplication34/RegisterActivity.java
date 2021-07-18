@@ -52,39 +52,48 @@ public class RegisterActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RequestBody requestBody = new FormBody.Builder()
-                        .add("username", edtUserName.getText().toString())
-                        .add("password", edtPassword.getText().toString())
-                        .add("fullname",edtFullName.getText().toString())
-                        .build();
-                // Khởi tạo OkHttpClient để lấy dữ liệu.
-                OkHttpClient client = new OkHttpClient();
+                edtFullName.getText();
+                String username = edtUserName.getText().toString();
+                String password = edtPassword.getText().toString();
+                edtPassword.getText();
+                if(username.contains("gmail.com")&&password.length()>6){
+                    RequestBody requestBody = new FormBody.Builder()
+                            .add("username", edtUserName.getText().toString())
+                            .add("password", edtPassword.getText().toString())
+                            .add("fullname",edtFullName.getText().toString())
+                            .build();
+                    // Khởi tạo OkHttpClient để lấy dữ liệu.
+                    OkHttpClient client = new OkHttpClient();
 
-                // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
-                Moshi moshi = new Moshi.Builder().build();
-                Request request = new Request.Builder()
-                        .url(URL_API.url+"users")
-                        .post(requestBody)
-                        .build();
-                client.newCall(request).enqueue(new okhttp3.Callback() {
-                    @Override
-                    public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
+                    // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
+                    Request request = new Request.Builder()
+                            .url(URL_API.url+"users")
+                            .post(requestBody)
+                            .build();
+                    client.newCall(request).enqueue(new okhttp3.Callback() {
+                        @Override
+                        public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
 
-                    }
+                        }
 
-                    @Override
-                    public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(RegisterActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
-                                startActivity(intent);
-                            }
-                        });
+                        @Override
+                        public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(RegisterActivity.this, "Đăng kí thành công", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(RegisterActivity.this,LoginActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
 
-                    }
-                });
+                        }
+                    });
+                }
+                else{
+                    Toast.makeText(RegisterActivity.this, "Vui lòng  nhập đúng với yêu cầu", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
     }

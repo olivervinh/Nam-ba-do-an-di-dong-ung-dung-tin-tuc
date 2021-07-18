@@ -1,16 +1,25 @@
 package com.example.myapplication34;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.Types;
@@ -24,19 +33,45 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AllArticlesActivity extends AppCompatActivity {
-    Button quaylai;
+    Button quaylai, tim;
+    private DrawerLayout mDrawer;
+    private Toolbar toolbar;
+    NavigationView navigationView;
+
+    EditText stringSearch;
     AllArtclesAdapter artclesAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_articles);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         // Khởi tạo RecyclerView.
         quaylai = findViewById(R.id.btnQuaylaiAllArticle);
+        tim = findViewById(R.id.btnAllArtiTim);
+        stringSearch = findViewById(R.id.edtSearchAll);
+        String chuoiTimKiem = stringSearch.getText().toString();
+        Toast.makeText(this, chuoiTimKiem, Toast.LENGTH_SHORT).show();
+        TextView soketqua = findViewById(R.id.idSoKetQua);
+        tim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(AllArticlesActivity.this, "chuoi tim" +stringSearch.getText().toString(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AllArticlesActivity.this,SearchAllArticlesActivity.class);
+                intent.putExtra("search",stringSearch.getText().toString());
+                startActivity(intent);
+            }
+        });
         quaylai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +92,7 @@ public class AllArticlesActivity extends AppCompatActivity {
 
         // Tạo request lên server.
         Request request = new Request.Builder()
-                .url(URL_API.url+"Articles")
+                .url(URL_API.url+"Articles/laytheodieukien")
                 .build();
 
         // Thực thi request.
@@ -66,9 +101,6 @@ public class AllArticlesActivity extends AppCompatActivity {
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
                 Log.e("Error", "Network Error");
             }
-
-
-
             @Override
             public void onResponse(Call call, Response response) throws IOException {
 
@@ -82,10 +114,79 @@ public class AllArticlesActivity extends AppCompatActivity {
                     public void run() {
                         artclesAdapter = new AllArtclesAdapter((ArrayList<Article>) Articles,AllArticlesActivity.this);
                         recyvArticles.setAdapter(artclesAdapter);
+                        soketqua.setText(artclesAdapter.getItemCount()+"");
+                    }
+                });
+            }
+        });
+
+        navigationView = findViewById(R.id.nvView);
+        Menu menu = navigationView.getMenu();
+        AddMenuCategory(menu);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
+                int id = item.getItemId();
+                Intent intent = new Intent(AllArticlesActivity.this, ArticlesCategoryActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+                DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        // The action bar home/up action should open or close the drawer.
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawer.openDrawer(GravityCompat.START);
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+    private void AddMenuCategory(Menu menu){
+        OkHttpClient client = new OkHttpClient();
+
+        // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
+        Moshi moshi = new Moshi.Builder().build();
+        Type articlesType = Types.newParameterizedType(List.class, Article.class);
+        final JsonAdapter<List<Article>> jsonAdapter = moshi.adapter(articlesType);
+
+        // Tạo request lên server.
+        Request request = new Request.Builder()
+                .url(URL_API.url+"Categories")
+                .build();
+
+        // Thực thi request.
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.e("Error", "Network Error");
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                // Lấy thông tin JSON trả về. Bạn có thể log lại biến json này để xem nó như thế nào.
+                String json = response.body().string();
+                Moshi moshi = new Moshi.Builder().build();
+
+                Type categoriesType = Types.newParameterizedType(List.class, Category.class);
+                JsonAdapter<List<Category>> jsonAdapter = moshi.adapter(categoriesType);
+
+                List<Category> Categories = jsonAdapter.fromJson(json);
+                // Cho hiển thị lên RecyclerView.
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        for (int i = 0; i < Categories.toArray().length; i++) {
+                            menu.add(Menu.NONE,Categories.get(i).getId(),Menu.NONE,Categories.get(i).getName());
+                        }
                     }
                 });
             }
         });
     }
-
 }

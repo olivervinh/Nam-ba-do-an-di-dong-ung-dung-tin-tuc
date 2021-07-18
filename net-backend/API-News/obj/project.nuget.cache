@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BrNnA17t0H/Pn8CSxBddAU/B8I5cSXIUs94Nb2OChVM50V9TsGjdHmm9HHOSQaR/gnj10jO1VJ9rvHBlrEeNhw==",
+  "dgSpecHash": "vsXInWgb7T1gxAFASpIgzTWx0xRAedTBII6aQHEcU7RmxInmY96lIfYirCn25MejjdDW/IJJCDis4+HIMRJ1mw==",
   "success": true,
-  "projectFilePath": "D:\\Android\\API-News\\API-News\\API-News.csproj",
+  "projectFilePath": "D:\\do-an-di-dong\\net-backend\\API-News\\API-News.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

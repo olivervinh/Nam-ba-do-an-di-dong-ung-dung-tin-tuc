@@ -7,7 +7,17 @@
     tools:context=".RegisterActivity">
 
     <TextView
-        android:id="@+id/titile1"
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="24dp"
+        android:text="password phải trên 6 kí tự"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtPasswordRegister" />
+
+    <TextView
+        android:id="@+id/titlebaitap1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
@@ -27,7 +37,7 @@
         android:hint="FullName"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titile1" />
+        app:layout_constraintTop_toBottomOf="@+id/titlebaitap1" />
 
     <EditText
         android:id="@+id/edtUsernameRegister"
@@ -36,7 +46,7 @@
         android:layout_marginStart="72dp"
         android:layout_marginTop="40dp"
         android:ems="10"
-        android:hint="Username"
+        android:hint="gmail"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtFullnameRegister" />
@@ -72,4 +82,14 @@
         android:text="Quay lại"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="93dp"
+        android:layout_marginTop="9dp"
+        android:text="* vd: abc.@gmail.com"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtUsernameRegister" />
 </androidx.constraintlayout.widget.ConstraintLayout>

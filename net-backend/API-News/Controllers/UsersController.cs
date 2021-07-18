@@ -43,11 +43,18 @@ namespace API_News.Controllers
             return user;
         }
 
+       
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutUser(int id, [FromForm] string username, [FromForm] string password, [FromForm] string fullname)
         {
+            User user = new User()
+            {
+                Fullname = fullname,
+                Username = username,
+                Password = password,
+            };
             if (id != user.Id)
             {
                 return BadRequest();
@@ -71,7 +78,7 @@ namespace API_News.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok();
         }
         [HttpPost("{dangnhap}")]
         public async Task<ActionResult<User>> UserDangNhap([FromForm]string username, [FromForm] string password)
@@ -79,12 +86,14 @@ namespace API_News.Controllers
             User us = await _context.Users.FirstOrDefaultAsync(s => s.Username == username && s.Password == password);
             if (us == null)
             {
-                return BadRequest();
+                return null;
             }
             var response = new
             {
                 id = us.Id,
                 fullname =us.Fullname,
+                username = us.Username,
+                password = us.Password,
             };
 
             var json = JsonConvert.SerializeObject(response);

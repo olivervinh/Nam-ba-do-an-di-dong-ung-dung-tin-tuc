@@ -10,7 +10,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication34">
-        <activity android:name=".UserManagerActivity"></activity>
+        <activity android:name=".SauKhiReportActivity"></activity>
+        <activity android:name=".DanhSachLuuActivity" />
+        <activity android:name=".DanhSachThichActivity" />
+        <activity android:name=".ReportActivity" />
+        <activity android:name=".CommentActivity" />
+        <activity android:name=".ArticlesCategoryActivity" />
+        <activity android:name=".SearchAllArticlesActivity" />
+        <activity android:name=".UserManagerActivity" />
         <activity android:name=".DetailAllArticleBaiTap" />
         <activity android:name=".DetailArticleActivity" />
         <activity android:name=".AllArticlesActivity" />
@@ -22,7 +29,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

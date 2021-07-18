@@ -34,12 +34,6 @@ namespace API_News.Migrations
                     b.Property<string>("Imagepath")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LikeArticle")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SaveArticle")
-                        .HasColumnType("int");
-
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
@@ -143,6 +137,42 @@ namespace API_News.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("API_News.Models.UserLikeArticles", b =>
+                {
+                    b.Property<int>("IdArticle")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdUser")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusUserLike")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdArticle", "IdUser");
+
+                    b.HasIndex("IdUser");
+
+                    b.ToTable("UserLikeArticles");
+                });
+
+            modelBuilder.Entity("API_News.Models.UserSaveArticles", b =>
+                {
+                    b.Property<int>("IdArticle")
+                        .HasColumnType("int");
+
+                    b.Property<int>("IdUser")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusUserSave")
+                        .HasColumnType("int");
+
+                    b.HasKey("IdArticle", "IdUser");
+
+                    b.HasIndex("IdUser");
+
+                    b.ToTable("UserSaveArticles");
+                });
+
             modelBuilder.Entity("API_News.Models.Article", b =>
                 {
                     b.HasOne("API_News.Models.Category", "Category")
@@ -192,11 +222,53 @@ namespace API_News.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("API_News.Models.UserLikeArticles", b =>
+                {
+                    b.HasOne("API_News.Models.Article", "Article")
+                        .WithMany("UserLikeArticles")
+                        .HasForeignKey("IdArticle")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API_News.Models.User", "User")
+                        .WithMany("UserLikeArticles")
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("API_News.Models.UserSaveArticles", b =>
+                {
+                    b.HasOne("API_News.Models.Article", "Article")
+                        .WithMany("UserSaveArticles")
+                        .HasForeignKey("IdArticle")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("API_News.Models.User", "User")
+                        .WithMany("UserSaveArticles")
+                        .HasForeignKey("IdUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Article");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("API_News.Models.Article", b =>
                 {
                     b.Navigation("Comments");
 
                     b.Navigation("Reports");
+
+                    b.Navigation("UserLikeArticles");
+
+                    b.Navigation("UserSaveArticles");
                 });
 
             modelBuilder.Entity("API_News.Models.Category", b =>
@@ -209,6 +281,10 @@ namespace API_News.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Reports");
+
+                    b.Navigation("UserLikeArticles");
+
+                    b.Navigation("UserSaveArticles");
                 });
 #pragma warning restore 612, 618
         }
