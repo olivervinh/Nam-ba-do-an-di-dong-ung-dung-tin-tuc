@@ -1,6 +1,6 @@
 package com.example.myapplication34;
 
-public class Article {
+public class ArticleCategory {
     private int id;
     private String title;
     private String content;
@@ -9,13 +9,13 @@ public class Article {
     private String status;
     private String likeArticle;
     private String saveArticle;
-    private int idCategory;
+    private String nameCategory;
     private String datePostArticle;
 
-    public Article() {
+    public ArticleCategory() {
     }
 
-    public Article(int id, String title, String content, String imagepath, String brief, String status, String likeArticle, String saveArticle, int idCategory, String datePostArticle) {
+    public ArticleCategory(int id, String title, String content, String imagepath, String brief, String status, String likeArticle, String saveArticle, String nameCategory, String datePostArticle) {
         this.id = id;
         this.title = title;
         this.content = content;
@@ -24,7 +24,7 @@ public class Article {
         this.status = status;
         this.likeArticle = likeArticle;
         this.saveArticle = saveArticle;
-        this.idCategory = idCategory;
+        this.nameCategory = nameCategory;
         this.datePostArticle = datePostArticle;
     }
 
@@ -92,12 +92,12 @@ public class Article {
         this.saveArticle = saveArticle;
     }
 
-    public int getIdCategory() {
-        return idCategory;
+    public String getNameCategory() {
+        return nameCategory;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
+    public void setNameCategory(String nameCategory) {
+        this.nameCategory = nameCategory;
     }
 
     public String getDatePostArticle() {

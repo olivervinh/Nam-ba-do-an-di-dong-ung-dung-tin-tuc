@@ -39,6 +39,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.Call;
@@ -59,7 +60,7 @@ public class DetailAllArticleBaiTap extends AppCompatActivity {
     NavigationView navigationView;
     BinhLuanAdapter binhluanAdapter;
     ImageView image,imagebaitap1,imagebaitap2,imagebaitap3;
-    TextView title, description,textbaitap1,textbaitap2,textbaitap3, summary;
+    TextView title, content,textbaitap1,textbaitap2,textbaitap3, brief, datePostArticle, category;
     Button btnQuayLai;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +92,7 @@ public class DetailAllArticleBaiTap extends AppCompatActivity {
 
         NavicationDrawerLayMenuCategory();
         TinTucLienQuan(id);
-
+        getImageSileAPI();
 
 
     }
@@ -390,7 +391,7 @@ public class DetailAllArticleBaiTap extends AppCompatActivity {
             public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
                 String json = response.body().string();
                 Gson gson = new GsonBuilder().create();
-                Article article = gson.fromJson(json, Article.class);
+                ArticleCategory article = gson.fromJson(json, ArticleCategory.class);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -398,11 +399,14 @@ public class DetailAllArticleBaiTap extends AppCompatActivity {
                         Picasso.with(DetailAllArticleBaiTap.this).load(article.getImagepath()).resize(100, 100).centerCrop().into(image);
                         title = findViewById(R.id.titileBaiTap);
                         title.setText(article.getTitle());
-                        summary = findViewById(R.id.TomtatBaiTap);
-                        summary.setText(article.getSummary());
-                        description = findViewById(R.id.descriptionBaiTap);
-                        description.setText(article.getDescription());
-
+                        brief = findViewById(R.id.TomtatBaiTap);
+                        brief.setText(article.getBrief());
+                        content = findViewById(R.id.descriptionBaiTap);
+                        content.setText(article.getContent());
+                        datePostArticle = findViewById(R.id.txtDatesadsa);
+                        datePostArticle.setText(article.getDatePostArticle());
+                        category = findViewById(R.id.NameCategoryss);
+                        category.setText(article.getNameCategory());
                     }
                 });
 
@@ -427,10 +431,10 @@ public class DetailAllArticleBaiTap extends AppCompatActivity {
                 String json = response.body().string();
                 Moshi moshi = new Moshi.Builder().build();
 
-                Type articlesType = Types.newParameterizedType(List.class, Article.class);
-                JsonAdapter<List<Article>> jsonAdapter = moshi.adapter(articlesType);
+                Type articlesType = Types.newParameterizedType(List.class, ArticleCategory.class);
+                JsonAdapter<List<ArticleCategory>> jsonAdapter = moshi.adapter(articlesType);
 
-                List<Article> Articles = jsonAdapter.fromJson(json);
+                List<ArticleCategory> Articles = jsonAdapter.fromJson(json);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -468,7 +472,7 @@ public class DetailAllArticleBaiTap extends AppCompatActivity {
                             @Override
                             public void onClick(View v) {
                                 Intent intent = new Intent(DetailAllArticleBaiTap.this, DetailAllArticleBaiTap.class);
-                                intent.putExtra("ma",Articles.get(3).getId());
+                                intent.putExtra("ma",Articles.get(2).getId());
                                 startActivity(intent);
                             }
                         });
@@ -477,6 +481,49 @@ public class DetailAllArticleBaiTap extends AppCompatActivity {
             }
         });
     }
+
+    public static <T> List<T> stringToArray(String s, Class<T[]> clazz) {
+        T[] arr = new Gson().fromJson(s, clazz);
+        return Arrays.asList(arr); //or return Arrays.asList(new Gson().fromJson(s, clazz)); for a one-liner
+    }
+    private void getImageSileAPI() {
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(URL_API.url+"ImageSlide").get().build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                String json = response.body().string();
+                GsonBuilder builder=new GsonBuilder();
+                Gson gson=builder.create();
+
+
+                String url1 = stringToArray(json, ImageSlide[].class).get(5).getUrl();
+                String url2 = stringToArray(json, ImageSlide[].class).get(6).getUrl();
+                String url3 = stringToArray(json, ImageSlide[].class).get(7).getUrl();
+
+                ImageView imageView1 = findViewById(R.id.imageView1);
+                ImageView imageView2 = findViewById(R.id.imageViewd2);
+                ImageView imageView3 = findViewById(R.id.imageViewd3);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Picasso.with(DetailAllArticleBaiTap.this).load(url1).into(imageView1);
+                        Picasso.with(DetailAllArticleBaiTap.this).load(url2).into(imageView2);
+                        Picasso.with(DetailAllArticleBaiTap.this).load(url3).into(imageView3);
+
+                    }
+                });
+
+            }
+        });
+    }
+
     private void AddMenuCategory(Menu menu){
         OkHttpClient client = new OkHttpClient();
 

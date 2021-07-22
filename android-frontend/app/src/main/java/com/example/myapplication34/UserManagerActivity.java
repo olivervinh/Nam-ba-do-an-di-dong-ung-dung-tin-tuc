@@ -101,5 +101,22 @@ public class UserManagerActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        Button btnLikeList = findViewById(R.id.btnDSThich);
+        btnLikeList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserManagerActivity.this, DanhSachThichActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button btnSave = findViewById(R.id.btnDSLuu);
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(UserManagerActivity.this, DanhSachLuuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

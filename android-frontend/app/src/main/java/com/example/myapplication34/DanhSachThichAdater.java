@@ -20,31 +20,32 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AllArtclesAdapter  extends RecyclerView.Adapter<AllArtclesAdapter.ViewHolder> {
-    private List<ArticleCategory> articleList;
-    private Context context;
+public class DanhSachThichAdater  extends RecyclerView.Adapter<DanhSachThichAdater.ViewHoler> {
+    List<ArticleLikeSave> articleList;
+    Context context;
 
-    public AllArtclesAdapter(ArrayList<ArticleCategory> articleArrayList, Context context) {
-        this.articleList = articleArrayList;
+
+    public DanhSachThichAdater(Context context, List<ArticleLikeSave> articleList) {
         this.context = context;
+        this.articleList = articleList;
     }
+
     @NonNull
     @NotNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
+    public ViewHoler onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_all_article, parent, false);
+                .inflate(R.layout.item_danhsachthich, parent, false);
 
-        return new ViewHolder(itemView);
+        return new ViewHoler(itemView);
+
     }
 
     @Override
-    public void onBindViewHolder(@NonNull @NotNull ViewHolder holder, int position) {
-        ArticleCategory article = articleList.get(position);
-        Picasso.with(context).load(article.getImagepath()).into(holder.image);
+    public void onBindViewHolder(@NonNull @NotNull ViewHoler holder, int position) {
+        ArticleLikeSave article = articleList.get(position);
+        Picasso.with(context).load(article.getImagepath()).into(holder.imageView);
         holder.title.setText(article.getTitle());
-        holder.brief.setText(article.getBrief());
-        holder.cate.setText(article.getNameCategory());
         holder.btnXemChiTiet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,22 +56,22 @@ public class AllArtclesAdapter  extends RecyclerView.Adapter<AllArtclesAdapter.V
             }
         });
     }
+
     @Override
     public int getItemCount() {
         return articleList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView title, brief, cate;
-        ImageView image;
+    public class ViewHoler extends RecyclerView.ViewHolder {
+        ImageView imageView;
+        TextView title;
         Button btnXemChiTiet;
-        public ViewHolder(@NonNull @NotNull View itemView) {
+
+        public ViewHoler(@NonNull @NotNull View itemView) {
             super(itemView);
-            cate = itemView.findViewById(R.id.textView28);
-            title = itemView.findViewById(R.id.textViewItemAllArticleTitle);
-            image = itemView.findViewById(R.id.imageViewItemAllAtricle);
-            btnXemChiTiet = itemView.findViewById(R.id.btnViewMoreItemArticle);
-            brief = itemView.findViewById(R.id.idBrief);
+            imageView = itemView.findViewById(R.id.imageViewThich);
+            title = itemView.findViewById(R.id.likeTitle);
+            btnXemChiTiet = itemView.findViewById(R.id.btnLikeXemChiTiet);
         }
     }
 }

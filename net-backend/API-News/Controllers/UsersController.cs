@@ -49,18 +49,16 @@ namespace API_News.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, [FromForm] string username, [FromForm] string password, [FromForm] string fullname)
         {
-            User user = new User()
-            {
-                Fullname = fullname,
-                Username = username,
-                Password = password,
-            };
+            User user = await _context.Users.FindAsync(id);
+            user.Password = password;
+            user.Username = username;
+            user.Fullname = fullname;
             if (id != user.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Users.Update(user);
 
             try
             {

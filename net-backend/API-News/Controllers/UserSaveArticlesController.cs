@@ -2,6 +2,7 @@
 using API_News.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +19,22 @@ namespace API_News.Controllers
         public UserSaveArticlesController(DPContext context)
         {
             this._context = context;
+        }
+
+        [HttpPost("laydssave")]
+        public async Task<ActionResult<IEnumerable<Article>>> GetAllArticles([FromForm] string id)
+        {
+            int idser = int.Parse(id);
+            var kb = from l in _context.UserSaveArticles.Where(s => s.IdUser == idser)
+                     join s in _context.Articles
+                     on l.IdArticle equals s.Id
+                     select new Article()
+                     {
+                         Id = s.Id,
+                         Title = s.Title,
+                         Imagepath = s.Imagepath,
+                     };
+            return await kb.ToListAsync();
         }
         [HttpPost]
         public async Task<ActionResult<UserSaveArticles>> Postasync([FromForm] string idUser, [FromForm] string idArticle, [FromForm] string status)

@@ -53,7 +53,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/txtDatesadsa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="44dp"
@@ -66,10 +66,10 @@
                     android:id="@+id/textView5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="33dp"
-                    android:layout_marginTop="14dp"
-                    android:text="Nguyễn văn A"
-                    app:layout_constraintStart_toEndOf="@+id/textView3"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="12dp"
+                    android:text="Trần Quý Vinh"
+                    app:layout_constraintStart_toEndOf="@+id/txtDatesadsa"
                     app:layout_constraintTop_toBottomOf="@+id/titileBaiTap" />
 
                 <TextView
@@ -91,7 +91,7 @@
                     android:layout_marginTop="26dp"
                     android:scaleType="fitXY"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView3"
+                    app:layout_constraintTop_toBottomOf="@+id/txtDatesadsa"
                     app:srcCompat="@drawable/hinh3" />
 
                 <!-- The main content view where fragments are loaded -->
@@ -297,6 +297,30 @@
                     android:layout_marginTop="32dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                <TextView
+                    android:id="@+id/NameCategoryss"
+                    android:layout_width="140dp"
+                    android:layout_height="24dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="32dp"
+                    android:text="TextView"
+                    android:textColor="#7B1FA2"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView5"
+                    app:layout_constraintTop_toBottomOf="@+id/titileBaiTap" />
+
+                <TextView
+                    android:id="@+id/textView27"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Loại: "
+                    app:layout_constraintBottom_toTopOf="@+id/NameCategoryss"
+                    app:layout_constraintStart_toEndOf="@+id/textView5"
+                    app:layout_constraintTop_toBottomOf="@+id/titileBaiTap" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>

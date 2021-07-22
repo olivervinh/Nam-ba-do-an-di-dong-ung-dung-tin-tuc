@@ -21,15 +21,43 @@ namespace API_News.Controllers
             _context = context;
         }
         [HttpGet("laytheoloai/{id}")]
-        public async Task<ActionResult<IEnumerable<Article>>> GetArticlesCategory(int id)
+        public async Task<ActionResult<IEnumerable<ArticleCategoryViewModel>>> GetArticlesCategory(int id)
         {
-            return await _context.Articles.Where(s => s.Status == 1 &&s.IdCategory==id).ToListAsync();
+            var kb = from a in _context.Articles.Where(s=>s.IdCategory==id)
+                     join c in _context.Categories
+                     on a.IdCategory equals c.Id
+                     select new ArticleCategoryViewModel()
+                     {
+                         NameCategory = c.Name,
+                         Id = a.Id,
+                         Brief = a.Brief,
+                         Content = a.Content,
+                         DatePostArticle = a.DatePostArticle,
+                         Imagepath = a.Imagepath,
+                         Status = a.Status,
+                         Title = a.Title,
+                     };
+            return await kb.Where(s => s.Status == 1).ToListAsync();
         }
         // GET: api/Articles
         [HttpGet("laytheodieukien")]
-        public async Task<ActionResult<IEnumerable<Article>>> GetArticlesWhere()
+        public async Task<ActionResult<IEnumerable<ArticleCategoryViewModel>>> GetArticlesWhere()
         {
-            return await _context.Articles.Where(s=>s.Status==1).ToListAsync();
+            var kb = from a in _context.Articles.Where(s => s.Status == 1)
+                     join c in _context.Categories
+                     on a.IdCategory equals c.Id
+                     select new ArticleCategoryViewModel()
+                     {
+                         NameCategory = c.Name,
+                         Id = a.Id,
+                         Brief = a.Brief,
+                         Content = a.Content,
+                         DatePostArticle = a.DatePostArticle,
+                         Imagepath = a.Imagepath,
+                         Status = a.Status,
+                         Title = a.Title,
+                     };
+            return await kb.ToListAsync();
         }
         // GET: api/Articles
         [HttpGet]
@@ -38,134 +66,48 @@ namespace API_News.Controllers
             return await _context.Articles.ToListAsync();
         }
         [HttpPost("search")]
-        public async Task<ActionResult<ICollection<Article>>> SearchArticleAsync([FromForm]string search)
+        public async Task<ActionResult<ICollection<ArticleCategoryViewModel>>> SearchArticleAsync([FromForm]string search)
         {
-            return await _context.Articles.Where(s => s.Description.Contains(search)||s.Title.Contains(search)).ToListAsync();
+            var kb = from a in _context.Articles.Where(s => s.Status == 1||  s.Content.Contains(search) || s.Title.Contains(search)||s.Brief.Contains(search))
+                     join c in _context.Categories
+                     on a.IdCategory equals c.Id
+                     select new ArticleCategoryViewModel()
+                     {
+                         NameCategory = c.Name,
+                         Id = a.Id,
+                         Brief = a.Brief,
+                         Content = a.Content,
+                         DatePostArticle = a.DatePostArticle,
+                         Imagepath = a.Imagepath,
+                         Status = a.Status,
+                         Title = a.Title,
+                     };
+         
+            return await kb.ToListAsync();
         }
 
        // GET: api/Articles/5
        [HttpGet("{id}")]
-        public async Task<ActionResult<Article>> GetArticle(int id)
+        public async Task<ActionResult<ArticleCategoryViewModel>> GetArticle(int id)
         {
-            var article = await _context.Articles.FindAsync(id);
-
-            if (article == null)
-            {
-                return NotFound();
-            }
-
-            return article;
+            var kb = from a in _context.Articles
+                     join c in _context.Categories
+                     on a.IdCategory equals c.Id
+                     select new ArticleCategoryViewModel()
+                     {
+                         NameCategory = c.Name,
+                         Id = a.Id,
+                         Brief = a.Brief,
+                         Content = a.Content,
+                         DatePostArticle = a.DatePostArticle,
+                         Imagepath = a.Imagepath,
+                         Status = a.Status,
+                         Title = a.Title,
+                     };
+            return await kb.FirstOrDefaultAsync(s=>s.Id==id);
         }
 
-        // PUT: api/Articles/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("like/{id}")]
-        //public async Task<IActionResult> PutArticleLike(int id, [FromForm] string test)
-        //{
-        //    Article article1;
-        //    article1 = await _context.Articles.FindAsync(id);
-        //    if(article1.LikeArticle == 0)
-        //    {
-        //        article1.LikeArticle = 1;
-        //        _context.Articles.Update(article1);
-
-        //        try
-        //        {
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!ArticleExists(id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return Ok();
-        //    }
-        //    else
-        //    {
-        //        article1.LikeArticle = 0;
-        //        _context.Articles.Update(article1);
-
-        //        try
-        //        {
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!ArticleExists(id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return null;
-        //    }
-        //}
-
-
-
-        //[HttpPut("save/{id}")]
-        //public async Task<IActionResult> PutArticleSave(int id, [FromForm] string test)
-        //{
-        //    Article article1;
-        //    article1 = await _context.Articles.FindAsync(id);
-        //    if (article1.SaveArticle == 0)
-        //    {
-        //        article1.SaveArticle = 1;
-        //        _context.Articles.Update(article1);
-
-        //        try
-        //        {
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!ArticleExists(id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return Ok();
-        //    }
-        //    else
-        //    {
-        //        article1.SaveArticle = 0;
-        //        _context.Articles.Update(article1);
-
-        //        try
-        //        {
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!ArticleExists(id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return null;
-        //    }
-
-           
-
-           
-        //}
+    
         // POST: api/Articles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -199,22 +141,27 @@ namespace API_News.Controllers
         }
 
         [HttpGet("tintuclienquan1/{id}")]
-        public async Task<ActionResult<ICollection<Article>>> tintuclienquan1(int id)
+        public async Task<ActionResult<IEnumerable<ArticleCategoryViewModel>>> tintuclienquan1(int id)
         {
             //lay ra tin tuc cung loai
-            Article article1 = await _context.Articles.FindAsync(id);
-            return await _context.Articles.Where(s=>s.IdCategory==article1.IdCategory).ToArrayAsync();
+            Article articleGetIdACate = await _context.Articles.FindAsync(id);
+            var kb = from a in _context.Articles
+                     join c in _context.Categories.Where(s=>s.Id== articleGetIdACate.IdCategory)
+                     on a.IdCategory equals c.Id
+                     select new ArticleCategoryViewModel()
+                     {
+                         NameCategory = c.Name,
+                         Id = a.Id,
+                         Brief = a.Brief,
+                         Content = a.Content,
+                         DatePostArticle = a.DatePostArticle,
+                         Imagepath = a.Imagepath,
+                         Status = a.Status,
+                         Title = a.Title,
+                     };
+            return await kb.Where(s=>s.Id!=id).ToListAsync();
         }
-        //[HttpGet("laydanhsachthich")]
-        //public async Task<ActionResult<IEnumerable<Article>>> danhsachthich()
-        //{
-        //    return await _context.Articles.Where(s => s.LikeArticle == 1).ToListAsync();
-        //}
-        //[HttpGet("laydanhsachluu")]
-        //public async Task<ActionResult<IEnumerable<Article>>> danhsachluu()
-        //{
-        //    return await _context.Articles.Where(s => s.SaveArticle == 1).ToListAsync();
-        //}
+      
 
     }
 }

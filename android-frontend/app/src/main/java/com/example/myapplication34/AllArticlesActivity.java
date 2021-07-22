@@ -62,7 +62,7 @@ public class AllArticlesActivity extends AppCompatActivity {
         stringSearch = findViewById(R.id.edtSearchAll);
         String chuoiTimKiem = stringSearch.getText().toString();
         Toast.makeText(this, chuoiTimKiem, Toast.LENGTH_SHORT).show();
-        TextView soketqua = findViewById(R.id.idSoKetQua);
+
         tim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,46 +79,7 @@ public class AllArticlesActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        final RecyclerView recyvArticles = (RecyclerView) findViewById(R.id.recyArticleAll);
-        recyvArticles.setLayoutManager(new LinearLayoutManager(this));
-
-        // Khởi tạo OkHttpClient để lấy dữ liệu.
-        OkHttpClient client = new OkHttpClient();
-
-        // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
-        Moshi moshi = new Moshi.Builder().build();
-        Type articlesType = Types.newParameterizedType(List.class, Article.class);
-        final JsonAdapter<List<Article>> jsonAdapter = moshi.adapter(articlesType);
-
-        // Tạo request lên server.
-        Request request = new Request.Builder()
-                .url(URL_API.url+"Articles/laytheodieukien")
-                .build();
-
-        // Thực thi request.
-        client.newCall(request).enqueue(new Callback() {
-            @Override
-            public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Log.e("Error", "Network Error");
-            }
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-
-                // Lấy thông tin JSON trả về. Bạn có thể log lại biến json này để xem nó như thế nào.
-                String json = response.body().string();
-                final List<Article> Articles = jsonAdapter.fromJson(json);
-
-                // Cho hiển thị lên RecyclerView.
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        artclesAdapter = new AllArtclesAdapter((ArrayList<Article>) Articles,AllArticlesActivity.this);
-                        recyvArticles.setAdapter(artclesAdapter);
-                        soketqua.setText(artclesAdapter.getItemCount()+"");
-                    }
-                });
-            }
-        });
+        getAllArticles();
 
         navigationView = findViewById(R.id.nvView);
         Menu menu = navigationView.getMenu();
@@ -136,6 +97,51 @@ public class AllArticlesActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void getAllArticles() {
+        final RecyclerView recyvArticles = (RecyclerView) findViewById(R.id.recyArticleAll);
+        recyvArticles.setLayoutManager(new LinearLayoutManager(this));
+
+        // Khởi tạo OkHttpClient để lấy dữ liệu.
+        OkHttpClient client = new OkHttpClient();
+
+        // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
+        Moshi moshi = new Moshi.Builder().build();
+        Type articlesType = Types.newParameterizedType(List.class, ArticleCategory.class);
+        final JsonAdapter<List<ArticleCategory>> jsonAdapter = moshi.adapter(articlesType);
+
+        // Tạo request lên server.
+        Request request = new Request.Builder()
+                .url(URL_API.url+"Articles/laytheodieukien")
+                .build();
+
+        // Thực thi request.
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                Log.e("Error", "Network Error");
+            }
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+
+                // Lấy thông tin JSON trả về. Bạn có thể log lại biến json này để xem nó như thế nào.
+                String json = response.body().string();
+                final List<ArticleCategory> Articles = jsonAdapter.fromJson(json);
+                TextView soketqua = findViewById(R.id.idSoKetQua);
+                // Cho hiển thị lên RecyclerView.
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        artclesAdapter = new AllArtclesAdapter((ArrayList<ArticleCategory>) Articles,AllArticlesActivity.this);
+                        recyvArticles.setAdapter(artclesAdapter);
+
+                        soketqua.setText(artclesAdapter.getItemCount()+"");
+                    }
+                });
+            }
+        });
+    }
+
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // The action bar home/up action should open or close the drawer.

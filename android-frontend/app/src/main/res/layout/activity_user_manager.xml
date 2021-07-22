@@ -80,34 +80,14 @@
         app:layout_constraintTop_toBottomOf="@+id/edtUsernameUserManager" />
 
     <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="53dp"
-        android:layout_marginTop="99dp"
-        android:text="Tin tức yêu thích"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edtPasswordUserManager" />
-
-    <Button
-        android:id="@+id/button3"
-        android:layout_width="145dp"
-        android:layout_height="52dp"
-        android:layout_marginStart="31dp"
-        android:layout_marginTop="26dp"
-        android:text="Tin tức đã lưu"
-        app:layout_constraintStart_toEndOf="@+id/button2"
-        app:layout_constraintTop_toBottomOf="@+id/btnUserManagerSave" />
-
-    <Button
         android:id="@+id/btnDangXuat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="248dp"
-        android:layout_marginTop="47dp"
+        android:layout_marginTop="125dp"
         android:text="Đăng xuất"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button3" />
+        app:layout_constraintTop_toBottomOf="@+id/btnUserManagerSave" />
 
     <Button
         android:id="@+id/btnUserManagerSave"
@@ -150,4 +130,24 @@
         android:inputType="textPersonName"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <Button
+        android:id="@+id/btnDSLuu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="92dp"
+        android:text="Danh sách lưu"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edtPasswordUserManager" />
+
+    <Button
+        android:id="@+id/btnDSThich"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="21dp"
+        android:text="Danh sách thích"
+        app:layout_constraintStart_toEndOf="@+id/btnDSLuu"
+        app:layout_constraintTop_toBottomOf="@+id/btnUserManagerSave" />
 </androidx.constraintlayout.widget.ConstraintLayout>

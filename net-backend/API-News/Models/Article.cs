@@ -9,9 +9,10 @@ namespace API_News.Models
     public class Article
     {
         public int Id { get; set; }
+        public DateTime DatePostArticle { get; set; }
         public string Title { get; set; }
-        public string Summary { get; set; } 
-        public string Description { get; set; }
+        public string Brief { get; set; }
+        public string  Content { get; set; } 
         public string Imagepath { get; set; }
         public int Status { get; set; }
         public int IdCategory { get; set; }

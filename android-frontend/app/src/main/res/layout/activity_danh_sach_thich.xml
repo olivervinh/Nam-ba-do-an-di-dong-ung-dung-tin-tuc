@@ -6,4 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".DanhSachThichActivity">
 
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:text="Danh sách thích"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@+id/btnLikeQL"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/sssadas"
+        android:layout_width="409dp"
+        android:layout_height="686dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView25" />
+
+    <Button
+        android:id="@+id/btnLikeQL"
+        android:layout_width="92dp"
+        android:layout_height="42dp"
+        android:text="Quay lại"
+        app:layout_constraintEnd_toStartOf="@+id/textView25"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

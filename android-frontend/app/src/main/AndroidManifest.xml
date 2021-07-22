@@ -19,7 +19,6 @@
         <activity android:name=".SearchAllArticlesActivity" />
         <activity android:name=".UserManagerActivity" />
         <activity android:name=".DetailAllArticleBaiTap" />
-        <activity android:name=".DetailArticleActivity" />
         <activity android:name=".AllArticlesActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">

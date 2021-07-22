@@ -6,11 +6,11 @@ using API_News.Models;
 using Microsoft.EntityFrameworkCore;
 namespace API_News.Data
 {
-    public class DPContext: DbContext
+    public class DPContext : DbContext
     {
-        public DPContext(DbContextOptions options):base(options)
+        public DPContext(DbContextOptions options) : base(options)
         {
-            
+
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace API_News.Data
         public virtual DbSet<Comment> Comments { get; set; }
         public virtual DbSet<Report> Reports { get; set; }
         public virtual DbSet<User> Users { get; set; }
-
+        public virtual DbSet<ImageSlide> ImageSlides {get;set;}
         public virtual DbSet<UserLikeArticles> UserLikeArticles { get; set; }
         public virtual DbSet<UserSaveArticles> UserSaveArticles { get; set; }
 

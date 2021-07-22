@@ -39,6 +39,7 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.Call;
@@ -80,8 +81,10 @@ public class MainActivity extends AppCompatActivity {
         btnLui = findViewById(R.id.btnLuis);
         btnTiep = findViewById(R.id.btnTiep);
         viewFlipper = findViewById(R.id.viewFlipper);
+
         textXinChaos = (TextView) findViewById(R.id.txtXinChao);
 
+        getImageSileAPI();
         SharedPreferences sharedPref = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         String name = sharedPref.getString("fullname", "");
         textXinChaos.setText(name);
@@ -161,6 +164,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+    public static <T> List<T> stringToArray(String s, Class<T[]> clazz) {
+        T[] arr = new Gson().fromJson(s, clazz);
+        return Arrays.asList(arr); //or return Arrays.asList(new Gson().fromJson(s, clazz)); for a one-liner
+    }
+    private void getImageSileAPI() {
+
+        OkHttpClient client = new OkHttpClient();
+        Request request = new Request.Builder().url(URL_API.url+"ImageSlide").get().build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(@NotNull Call call, @NotNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                String json = response.body().string();
+                GsonBuilder builder=new GsonBuilder();
+                Gson gson=builder.create();
+
+
+                String url1 = stringToArray(json, ImageSlide[].class).get(0).getUrl();
+                String url2 = stringToArray(json, ImageSlide[].class).get(1).getUrl();
+                String url3 = stringToArray(json, ImageSlide[].class).get(2).getUrl();
+
+                ImageView imageView1 = findViewById(R.id.imageView1);
+                ImageView imageView2 = findViewById(R.id.imageViewd2);
+                ImageView imageView3 = findViewById(R.id.imageViewd3);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                       Picasso.with(MainActivity.this).load(url1).into(imageView1);
+                        Picasso.with(MainActivity.this).load(url2).into(imageView2);
+                        Picasso.with(MainActivity.this).load(url3).into(imageView3);
+
+                    }
+                });
+
+            }
+        });
+    }
 
     private void ViewArticlesCategory(int id) {
 
@@ -187,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
                 String json = response.body().string();
                 Log.d("dsadasd",json);
                 Gson gson=new GsonBuilder().create();
-                Article article=gson.fromJson(json,Article.class);
+                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -233,7 +277,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
                 String json = response.body().string();
                 Gson gson=new GsonBuilder().create();
-                Article article=gson.fromJson(json,Article.class);
+                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -279,7 +323,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
                 String json = response.body().string();
                 Gson gson=new GsonBuilder().create();
-                Article article=gson.fromJson(json,Article.class);
+                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -323,7 +367,7 @@ public class MainActivity extends AppCompatActivity {
                 String json = response.body().string();
                 Log.d("dsadasd",json);
                 Gson gson=new GsonBuilder().create();
-                Article article=gson.fromJson(json,Article.class);
+                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -369,7 +413,7 @@ public class MainActivity extends AppCompatActivity {
                 String json = response.body().string();
                 Log.d("dsadasd",json);
                 Gson gson=new GsonBuilder().create();
-                Article article=gson.fromJson(json,Article.class);
+                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -415,7 +459,7 @@ public class MainActivity extends AppCompatActivity {
                 String json = response.body().string();
                 Log.d("dsadasd",json);
                 Gson gson=new GsonBuilder().create();
-                Article article=gson.fromJson(json,Article.class);
+                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {

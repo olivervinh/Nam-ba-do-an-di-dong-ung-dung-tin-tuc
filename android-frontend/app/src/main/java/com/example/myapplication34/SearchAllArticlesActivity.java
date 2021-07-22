@@ -62,8 +62,8 @@ public class SearchAllArticlesActivity extends AppCompatActivity {
 
         // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
         Moshi moshi = new Moshi.Builder().build();
-        Type articlesType = Types.newParameterizedType(List.class, Article.class);
-        final JsonAdapter<List<Article>> jsonAdapter = moshi.adapter(articlesType);
+        Type articlesType = Types.newParameterizedType(List.class, ArticleCategory.class);
+        final JsonAdapter<List<ArticleCategory>> jsonAdapter = moshi.adapter(articlesType);
 
         // Tạo request lên server.
         Request request = new Request.Builder()
@@ -82,13 +82,13 @@ public class SearchAllArticlesActivity extends AppCompatActivity {
 
                 // Lấy thông tin JSON trả về. Bạn có thể log lại biến json này để xem nó như thế nào.
                 String json = response.body().string();
-                final List<Article> Articles = jsonAdapter.fromJson(json);
+                final List<ArticleCategory> Articles = jsonAdapter.fromJson(json);
 
                 // Cho hiển thị lên RecyclerView.
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        artclesAdapter = new AllArtclesAdapter((ArrayList<Article>) Articles,SearchAllArticlesActivity.this);
+                        artclesAdapter = new AllArtclesAdapter((ArrayList<ArticleCategory>) Articles,SearchAllArticlesActivity.this);
                         recyvArticles.setAdapter(artclesAdapter);
                     }
                 });
