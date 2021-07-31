@@ -3,31 +3,22 @@ package com.example.myapplication34;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.squareup.moshi.JsonAdapter;
-import com.squareup.moshi.Moshi;
-import com.squareup.moshi.Types;
+import com.example.myapplication34.url.URL_API;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-import java.lang.reflect.Type;
 
 import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -56,7 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String username = edtUserName.getText().toString();
                 String password = edtPassword.getText().toString();
                 edtPassword.getText();
-                if(username.contains("gmail.com")&&password.length()>6){
+                if(username.contains("gmail.com")&&password.length()>=6){
                     RequestBody requestBody = new FormBody.Builder()
                             .add("username", edtUserName.getText().toString())
                             .add("password", edtPassword.getText().toString())

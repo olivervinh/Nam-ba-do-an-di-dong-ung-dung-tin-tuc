@@ -12,8 +12,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="60dp"
         android:text="Report bài viết"
         android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnQuayLaiqsdsds"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,8 +25,10 @@
         android:layout_height="225dp"
         android:layout_marginStart="61dp"
         android:layout_marginTop="43dp"
+        android:layout_marginEnd="38dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnQuayLaiqsdsds" />
 
@@ -32,9 +36,11 @@
         android:id="@+id/btnQuayLaiqsdsds"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="11dp"
         android:text="Quay lại"
+        app:layout_constraintEnd_toStartOf="@+id/textView23"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +50,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="268dp"
         android:layout_marginTop="72dp"
+        android:layout_marginEnd="55dp"
         android:text="Gửi"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtReport" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="23dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="101dp"
         android:text="Kết quả tìm kiếm cho từ khóa: "
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnSearchAlllQuayLai"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,9 +40,10 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewSearch"
-        android:layout_width="358dp"
-        android:layout_height="569dp"
+        android:layout_width="390dp"
+        android:layout_height="645dp"
         android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTuKhoa" />
 

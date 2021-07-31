@@ -33,13 +33,16 @@
 
                 <TextView
                     android:id="@+id/descriptionBaiTap"
-                    android:layout_width="375dp"
+                    android:layout_width="369dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="60dp"
                     android:text="nội dung bài vết ssssssssssssssssssssssssssssddddddddddsasadasdsaddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/imageViewBaiTap" />
+                    app:layout_constraintTop_toBottomOf="@+id/TomtatBaiTap" />
 
                 <TextView
                     android:id="@+id/titileBaiTap"
@@ -47,8 +50,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="110dp"
+                    android:layout_marginEnd="71dp"
                     android:text="Tiêu đề bài viết"
                     android:textSize="25sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -72,30 +77,34 @@
                     app:layout_constraintStart_toEndOf="@+id/txtDatesadsa"
                     app:layout_constraintTop_toBottomOf="@+id/titileBaiTap" />
 
+                <!-- The main content view where fragments are loaded -->
+
+
                 <TextView
                     android:id="@+id/TomtatBaiTap"
-                    android:layout_width="222dp"
-                    android:layout_height="111dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="35dp"
+                    android:layout_width="217dp"
+                    android:layout_height="182dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="40dp"
                     android:text="Tóm tắt bài viết"
-                    android:textSize="16sp"
+                    android:textSize="13sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/imageViewBaiTap"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5" />
+                    app:layout_constraintTop_toBottomOf="@+id/NameCategoryss" />
 
                 <ImageView
                     android:id="@+id/imageViewBaiTap"
                     android:layout_width="125dp"
                     android:layout_height="112dp"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginTop="26dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="5dp"
                     android:scaleType="fitXY"
+                    app:layout_constraintEnd_toStartOf="@+id/TomtatBaiTap"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/txtDatesadsa"
                     app:srcCompat="@drawable/hinh3" />
-
-                <!-- The main content view where fragments are loaded -->
-
 
                 <TextView
                     android:id="@+id/textView11"
@@ -134,6 +143,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="37dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginEnd="47dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/include4"
                     app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -176,9 +187,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="168dp"
                     android:layout_marginTop="60dp"
+                    android:layout_marginEnd="175dp"
                     android:layout_marginBottom="5dp"
                     android:text="Quảng cáo"
                     app:layout_constraintBottom_toTopOf="@+id/viewFlipper"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/include4" />
 
@@ -210,33 +223,39 @@
 
                 <Button
                     android:id="@+id/btnLikeArticle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
+                    android:layout_width="84dp"
+                    android:layout_height="43dp"
+                    android:layout_marginStart="25dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginEnd="42dp"
+                    android:layout_marginEnd="5dp"
                     android:text="Thích"
+                    android:textSize="10sp"
                     app:layout_constraintEnd_toStartOf="@+id/btnSaveArticle"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionBaiTap" />
 
                 <Button
                     android:id="@+id/btnSaveArticle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_width="84dp"
+                    android:layout_height="42dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="2dp"
                     android:text="Lưu"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toStartOf="@+id/btnCommentArticle"
                     app:layout_constraintStart_toEndOf="@+id/btnLikeArticle"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionBaiTap" />
 
                 <Button
                     android:id="@+id/btnCommentArticle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="95dp"
+                    android:layout_height="41dp"
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="2dp"
                     android:text="Bình luận"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toStartOf="@+id/btnReportDetail"
                     app:layout_constraintStart_toEndOf="@+id/btnSaveArticle"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionBaiTap" />
 
@@ -245,17 +264,23 @@
                     android:layout_width="116dp"
                     android:layout_height="37dp"
                     android:layout_marginStart="19dp"
+                    android:layout_marginEnd="276dp"
                     android:layout_marginBottom="10dp"
                     android:text="Quay lại"
                     app:layout_constraintBottom_toTopOf="@+id/titileBaiTap"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <Button
                     android:id="@+id/btnReportDetail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="77dp"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="5dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="30dp"
                     android:text="Report"
+                    android:textSize="10sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btnCommentArticle"
                     app:layout_constraintTop_toBottomOf="@+id/descriptionBaiTap" />
 
@@ -274,7 +299,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="32dp"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="50dp"
                     android:text="Nội dung: "
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imageViewBaiTap" />
@@ -285,7 +310,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="168dp"
                     android:layout_marginTop="11dp"
+                    android:layout_marginEnd="181dp"
                     android:text="Bình luận "
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btnSaveArticle" />
 
@@ -295,6 +322,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="32dp"
+                    android:layout_marginEnd="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -304,9 +333,11 @@
                     android:layout_height="24dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="32dp"
+                    android:layout_marginEnd="23dp"
                     android:text="TextView"
                     android:textColor="#7B1FA2"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView5"
                     app:layout_constraintTop_toBottomOf="@+id/titileBaiTap" />
 
@@ -316,9 +347,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="22dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="127dp"
                     android:layout_marginBottom="10dp"
                     android:text="Loại: "
                     app:layout_constraintBottom_toTopOf="@+id/NameCategoryss"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/textView5"
                     app:layout_constraintTop_toBottomOf="@+id/titileBaiTap" />
 

@@ -19,6 +19,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication34.adapters.AllArtclesAdapter;
+import com.example.myapplication34.models.Article;
+import com.example.myapplication34.models.ArticleCategory;
+import com.example.myapplication34.models.Category;
+import com.example.myapplication34.url.URL_API;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
@@ -33,10 +38,8 @@ import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
-import okhttp3.FormBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class AllArticlesActivity extends AppCompatActivity {
@@ -114,7 +117,6 @@ public class AllArticlesActivity extends AppCompatActivity {
         Request request = new Request.Builder()
                 .url(URL_API.url+"Articles/laytheodieukien")
                 .build();
-
         // Thực thi request.
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -123,7 +125,6 @@ public class AllArticlesActivity extends AppCompatActivity {
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
                 // Lấy thông tin JSON trả về. Bạn có thể log lại biến json này để xem nó như thế nào.
                 String json = response.body().string();
                 final List<ArticleCategory> Articles = jsonAdapter.fromJson(json);
@@ -134,14 +135,12 @@ public class AllArticlesActivity extends AppCompatActivity {
                     public void run() {
                         artclesAdapter = new AllArtclesAdapter((ArrayList<ArticleCategory>) Articles,AllArticlesActivity.this);
                         recyvArticles.setAdapter(artclesAdapter);
-
                         soketqua.setText(artclesAdapter.getItemCount()+"");
                     }
                 });
             }
         });
     }
-
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // The action bar home/up action should open or close the drawer.
@@ -150,22 +149,15 @@ public class AllArticlesActivity extends AppCompatActivity {
                 mDrawer.openDrawer(GravityCompat.START);
                 return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
     private void AddMenuCategory(Menu menu){
         OkHttpClient client = new OkHttpClient();
-
         // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
-        Moshi moshi = new Moshi.Builder().build();
-        Type articlesType = Types.newParameterizedType(List.class, Article.class);
-        final JsonAdapter<List<Article>> jsonAdapter = moshi.adapter(articlesType);
-
         // Tạo request lên server.
         Request request = new Request.Builder()
                 .url(URL_API.url+"Categories")
                 .build();
-
         // Thực thi request.
         client.newCall(request).enqueue(new Callback() {
             @Override
@@ -174,14 +166,11 @@ public class AllArticlesActivity extends AppCompatActivity {
             }
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-
                 // Lấy thông tin JSON trả về. Bạn có thể log lại biến json này để xem nó như thế nào.
                 String json = response.body().string();
                 Moshi moshi = new Moshi.Builder().build();
-
                 Type categoriesType = Types.newParameterizedType(List.class, Category.class);
                 JsonAdapter<List<Category>> jsonAdapter = moshi.adapter(categoriesType);
-
                 List<Category> Categories = jsonAdapter.fromJson(json);
                 // Cho hiển thị lên RecyclerView.
                 runOnUiThread(new Runnable() {

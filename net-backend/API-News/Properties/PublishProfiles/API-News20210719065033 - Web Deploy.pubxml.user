@@ -7,5 +7,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAu4Tq6t70JEaFnSDnyA2baQAAAAACAAAAAAAQZgAAAAEAACAAAAAGE+/MWy2jhR2gw+QiBjqAtmQUwDRj09dQVhEsWdIozQAAAAAOgAAAAAIAACAAAACyTeIq0CN96sQmemOlPxlBr5PFFRSezrJMftRDItDTOYAAAAC2P6NSZ9igz0zDo65ZYqGsmU/TbsMQEeJelG9bfQXaGbkXe6Jv+jPdSIsKHErPKncIeLgn7qUzd8QNykZJJ30YEMOfZGsgVgj2v4FNJV0qvXAQbYMXXPBGXHoYqJXVORKiZAdEUgfgvhGmHek5Oy02ty+yAbrgtv2daeVSZbr+gUAAAAAmiUvmOKS5hkKmaTGysiswXH1+ZefCN0/CVetEW3hw/fxt1TjaaZ2mHEwJbT0IwZcXjXpIWg83NnNzYXKzlP3K</EncryptedPassword>
+    <History>True|2021-07-27T00:51:05.8627738Z;True|2021-07-23T19:37:31.3556674+07:00;True|2021-07-22T08:05:54.2880740+07:00;</History>
   </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="db">
+      <Value>Data Source=tcp:api-newsdbserver.database.windows.net,1433%3bInitial Catalog=API-News_db%3bUser Id=a%40api-newsdbserver%3bPassword=Eysuo147852</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EFMigrations Include="API_News.Data.DPContext">
+      <Value>Data Source=tcp:api-newsdbserver.database.windows.net,1433%3bInitial Catalog=API-News_db%3bUser Id=a%40api-newsdbserver%3bPassword=Eysuo147852</Value>
+    </EFMigrations>
+  </ItemGroup>
 </Project>

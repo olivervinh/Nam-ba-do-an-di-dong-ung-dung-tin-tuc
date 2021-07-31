@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2021-07-22T01:02:39.7114755Z"
+    },
     "apis1": {
       "restored": true,
       "restoreTime": "2021-07-22T00:54:36.9888895Z"
@@ -11,10 +15,20 @@
       "Type": "resourceGroup",
       "Value": "API-News20210719065033ResourceGroup"
     },
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "41329eb6-d76e-468e-b21b-bc2f41429e48"
+    },
     "apis1.subscriptionId": {
       "Name": "apis1.subscriptionId",
       "Type": "subscription",
       "Value": "41329eb6-d76e-468e-b21b-bc2f41429e48"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "API-News20210719065033ResourceGroup"
     }
   }
 }

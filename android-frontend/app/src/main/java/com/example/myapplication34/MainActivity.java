@@ -6,16 +6,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.SpannableString;
-import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +22,10 @@ import android.widget.TextView;
 import android.widget.VideoView;
 import android.widget.ViewFlipper;
 
+import com.example.myapplication34.models.Article;
+import com.example.myapplication34.models.Category;
+import com.example.myapplication34.models.ImageSlide;
+import com.example.myapplication34.url.URL_API;
 import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,7 +38,6 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,8 +52,8 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawer;
     private Toolbar toolbar;
     private NavigationView nvDrawer;
-    ImageView image1,image2,image3, image4, image5, image6;
-    TextView text1 ,text2, text3, textXinChaos, text4, text5, text6;
+    ImageView image1,image2,image3, image4, image5, image6,image7,image8,image9,image10,image11,image12,image13,image14,image15;
+    TextView text1 ,text2, text3, textXinChaos, text4, text5, text6,text7,text8,text9,text10,text11,text12,text13,text14,text15;
 
     ViewFlipper viewFlipper;
     Button btnLui;
@@ -83,8 +82,10 @@ public class MainActivity extends AppCompatActivity {
         viewFlipper = findViewById(R.id.viewFlipper);
 
         textXinChaos = (TextView) findViewById(R.id.txtXinChao);
-
+//jkhkjhjkhhjhj
         getImageSileAPI();
+
+//bnmbkjhjkhjkhjkhkj
         SharedPreferences sharedPref = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         String name = sharedPref.getString("fullname", "");
         textXinChaos.setText(name);
@@ -135,12 +136,13 @@ public class MainActivity extends AppCompatActivity {
                 videoView.pause();
             }
         });
-        getFearture1(MainActivity.this);
-        getFearture2(MainActivity.this);
-        getFearture3(MainActivity.this);
-        getFearture4(MainActivity.this);
-        getFearture5(MainActivity.this);
-        getFearture6(MainActivity.this);
+        ArticlesCategoryNoiBat(MainActivity.this);
+        ArticleCategoryThoiSu(MainActivity.this);
+        ArticlesCategoryTheGiois(MainActivity.this);
+        ArticlesCategoryGiaoDucs(MainActivity.this);
+        ArticleCategoryTheThaos(MainActivity.this);
+
+
         // Setup toggle to display hamburger icon with nice animation
         drawerToggle = setupDrawerToggle();
         drawerToggle.setDrawerIndicatorEnabled(true);
@@ -150,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         mDrawer.addDrawerListener(drawerToggle);
         navigationView = findViewById(R.id.nvView);
         Menu menu = navigationView.getMenu();
-        AddMenuCategory(menu);
+        AddMenuCategory(menu);////gsfsdfsdfsdddddddddddddddddddddddddddddddd
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull @NotNull MenuItem item) {
@@ -161,9 +163,209 @@ public class MainActivity extends AppCompatActivity {
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
                 return true;
+            }///zxczxvxvxc
+        });
+    }
+
+    private void ArticleCategoryTheThaos(Context context) {
+        // Khởi tạo OkHttpClient để lấy dữ liệu.
+        OkHttpClient client = new OkHttpClient();
+
+        // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
+
+        Request request = new Request.Builder()
+                .url(URL_API.url+"articles/thethaos")
+                .build();
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
+
+            }
+            @Override
+            public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
+                String json = response.body().string();
+                Gson gson=new GsonBuilder().create();
+                Article[] articles=gson.fromJson(json,Article[].class);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        image13 = findViewById(R.id.imageItem13);
+                        Picasso.with(MainActivity.this).load(articles[0].getImagepath()).resize(100,100).centerCrop().into(image13);
+                        text13 = findViewById(R.id.title13);
+                        text13.setText(articles[0].getTitle());
+                        text13.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
+                                intent.putExtra("ma",articles[0].getId());
+                                context.startActivity(intent);
+                            }
+                        });
+                        image14 = findViewById(R.id.imageItem14);
+                        Picasso.with(MainActivity.this).load(articles[1].getImagepath()).resize(100,100).centerCrop().into(image14);
+                        text14 = findViewById(R.id.title14);
+                        text14.setText(articles[1].getTitle());
+                        text14.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
+                                intent.putExtra("ma",articles[1].getId());
+                                context.startActivity(intent);
+                            }
+                        });
+
+                        image15 = findViewById(R.id.imageItem15);
+                        Picasso.with(MainActivity.this).load(articles[2].getImagepath()).resize(100,100).centerCrop().into(image15);
+                        text15 = findViewById(R.id.title15);
+                        text15.setText(articles[2].getTitle());
+                        text15.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
+                                intent.putExtra("ma",articles[2].getId());
+                                context.startActivity(intent);
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+
+    }
+
+    private void ArticlesCategoryGiaoDucs(Context context) {
+         // Khởi tạo OkHttpClient để lấy dữ liệu.
+        OkHttpClient client = new OkHttpClient();
+
+        // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
+
+        Request request = new Request.Builder()
+                .url(URL_API.url+"articles/giaoducs")
+                .build();
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
+
+            }
+            @Override
+            public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
+                String json = response.body().string();
+                Gson gson=new GsonBuilder().create();
+                Article[] articles=gson.fromJson(json,Article[].class);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        image10 = findViewById(R.id.imageItem10);
+                        Picasso.with(MainActivity.this).load(articles[0].getImagepath()).resize(100,100).centerCrop().into(image10);
+                        text10 = findViewById(R.id.title10);
+                        text10.setText(articles[0].getTitle());
+                        text10.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
+                                intent.putExtra("ma",articles[0].getId());
+                                context.startActivity(intent);
+                            }
+                        });
+                        image11 = findViewById(R.id.imageItem11);
+                        Picasso.with(MainActivity.this).load(articles[1].getImagepath()).resize(100,100).centerCrop().into(image11);
+                        text11 = findViewById(R.id.title11);
+                        text11.setText(articles[1].getTitle());
+                        text11.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
+                                intent.putExtra("ma",articles[1].getId());
+                                context.startActivity(intent);
+                            }
+                        });
+
+                        image12 = findViewById(R.id.imageItem12);
+                        Picasso.with(MainActivity.this).load(articles[2].getImagepath()).resize(100,100).centerCrop().into(image12);
+                        text12 = findViewById(R.id.title12);
+                        text12.setText(articles[2].getTitle());
+                        text12.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
+                                intent.putExtra("ma",articles[2].getId());
+                                context.startActivity(intent);
+                            }
+                        });
+                    }
+                });
+
             }
         });
     }
+
+    private void ArticlesCategoryTheGiois(Context context) {
+          // Khởi tạo OkHttpClient để lấy dữ liệu.
+        OkHttpClient client = new OkHttpClient();
+
+        // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
+        Moshi moshi = new Moshi.Builder().build();
+        Request request = new Request.Builder()
+                .url(URL_API.url+"articles/thegiois")
+                .build();
+        client.newCall(request).enqueue(new okhttp3.Callback() {
+            @Override
+            public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
+
+            }
+            @Override
+            public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
+                String json = response.body().string();
+                Gson gson=new GsonBuilder().create();
+                Article[] articles=gson.fromJson(json,Article[].class);
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        image7 = findViewById(R.id.imageItem7);
+                        Picasso.with(MainActivity.this).load(articles[0].getImagepath()).resize(100,100).centerCrop().into(image7);
+                        text7 = findViewById(R.id.title7);
+                        text7.setText(articles[0].getTitle());
+                        text7.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
+                                intent.putExtra("ma",articles[0].getId());
+                                context.startActivity(intent);
+                            }
+                        });
+                        image8 = findViewById(R.id.imageItem8);
+                        Picasso.with(MainActivity.this).load(articles[1].getImagepath()).resize(100,100).centerCrop().into(image8);
+                        text8 = findViewById(R.id.title8);
+                        text8.setText(articles[1].getTitle());
+                        text8.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
+                                intent.putExtra("ma",articles[1].getId());
+                                context.startActivity(intent);
+                            }
+                        });
+
+                        image9 = findViewById(R.id.imageItem9);
+                        Picasso.with(MainActivity.this).load(articles[2].getImagepath()).resize(100,100).centerCrop().into(image9);
+                        text9 = findViewById(R.id.title9);
+                        text9.setText(articles[2].getTitle());
+                        text9.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
+                                intent.putExtra("ma",articles[2].getId());
+                                context.startActivity(intent);
+                            }
+                        });
+                    }
+                });
+
+            }
+        });
+    }
+
     public static <T> List<T> stringToArray(String s, Class<T[]> clazz) {
         T[] arr = new Gson().fromJson(s, clazz);
         return Arrays.asList(arr); //or return Arrays.asList(new Gson().fromJson(s, clazz)); for a one-liner
@@ -206,12 +408,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void ViewArticlesCategory(int id) {
-
-    }
 
 
-    private void getFearture1(Context context){
+
+    private void ArticlesCategoryNoiBat(Context context){
 
         // Khởi tạo OkHttpClient để lấy dữ liệu.
         OkHttpClient client = new OkHttpClient();
@@ -219,7 +419,7 @@ public class MainActivity extends AppCompatActivity {
         // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
         Moshi moshi = new Moshi.Builder().build();
         Request request = new Request.Builder()
-                .url(URL_API.url+"articles/1")
+                .url(URL_API.url+"articles/noibats")
                 .build();
         client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
@@ -229,125 +429,57 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
                 String json = response.body().string();
-                Log.d("dsadasd",json);
                 Gson gson=new GsonBuilder().create();
-                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
+                Article[] articles=gson.fromJson(json,Article[].class);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         image1 = findViewById(R.id.imageItem1);
-                        Picasso.with(MainActivity.this).load(article.getImagepath()).resize(100,100).centerCrop().into(image1);
+                        Picasso.with(MainActivity.this).load(articles[0].getImagepath()).resize(100,100).centerCrop().into(image1);
                         text1 = findViewById(R.id.title1);
-                        text1.setText(article.getTitle());
+                        text1.setText(articles[0].getTitle());
                         text1.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(context, DetailAllArticleBaiTap.class);
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
                                 intent.putExtra("ma",1);
                                 context.startActivity(intent);
                             }
                         });
-                        text1.setSingleLine(false);
-                        SpannableString content = new SpannableString(article.getTitle());
-                        content.setSpan(new UnderlineSpan(), 0, article.getTitle().length(), 0);
-                        text1.setText(content);
-                    }
-                });
-
-            }
-        });
-    }
-    private void getFearture2(Context context){
-
-        // Khởi tạo OkHttpClient để lấy dữ liệu.
-        OkHttpClient client = new OkHttpClient();
-
-        // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
-        Moshi moshi = new Moshi.Builder().build();
-        Request request = new Request.Builder()
-                .url(URL_API.url+"articles/2")
-                .build();
-        client.newCall(request).enqueue(new okhttp3.Callback() {
-            @Override
-            public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
-                String json = response.body().string();
-                Gson gson=new GsonBuilder().create();
-                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
                         image2 = findViewById(R.id.imageItem2);
-                        Picasso.with(MainActivity.this).load(article.getImagepath()).resize(100,100).centerCrop().into(image2);
+                        Picasso.with(MainActivity.this).load(articles[1].getImagepath()).resize(100,100).centerCrop().into(image2);
                         text2 = findViewById(R.id.titile2);
-                        text2.setText(article.getTitle());
+                        text2.setText(articles[1].getTitle());
                         text2.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(context, DetailAllArticleBaiTap.class);
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
                                 intent.putExtra("ma",2);
                                 context.startActivity(intent);
                             }
                         });
-                        text2.setSingleLine(false);
-                        SpannableString content = new SpannableString(article.getTitle());
-                        content.setSpan(new UnderlineSpan(), 0, article.getTitle().length(), 0);
-                        text2.setText(content);
-                    }
-                });
 
-            }
-        });
-    }
-    private void getFearture3(Context context){
-
-        // Khởi tạo OkHttpClient để lấy dữ liệu.
-        OkHttpClient client = new OkHttpClient();
-
-        // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
-        Moshi moshi = new Moshi.Builder().build();
-        Request request = new Request.Builder()
-                .url(URL_API.url+"articles/3")
-                .build();
-        client.newCall(request).enqueue(new okhttp3.Callback() {
-            @Override
-            public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
-                String json = response.body().string();
-                Gson gson=new GsonBuilder().create();
-                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
                         image3 = findViewById(R.id.imageItem3);
-                        Picasso.with(MainActivity.this).load(article.getImagepath()).resize(100,100).centerCrop().into(image3);
+                        Picasso.with(MainActivity.this).load(articles[2].getImagepath()).resize(100,100).centerCrop().into(image3);
                         text3 = findViewById(R.id.titile3);
+                        text3.setText(articles[2].getTitle());
                         text3.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(context, DetailAllArticleBaiTap.class);
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
                                 intent.putExtra("ma",3);
                                 context.startActivity(intent);
                             }
                         });
-                        SpannableString content = new SpannableString(article.getTitle());
-                        content.setSpan(new UnderlineSpan(), 0, article.getTitle().length(), 0);
-                        text3.setText(content);
                     }
                 });
 
             }
         });
     }
-    private void getFearture4(Context context){
+
+
+    private void ArticleCategoryThoiSu(Context context){
 
         // Khởi tạo OkHttpClient để lấy dữ liệu.
         OkHttpClient client = new OkHttpClient();
@@ -355,143 +487,73 @@ public class MainActivity extends AppCompatActivity {
         // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
         Moshi moshi = new Moshi.Builder().build();
         Request request = new Request.Builder()
-                .url(URL_API.url+"articles/4")
+                .url(URL_API.url+"articles/thoisus")
                 .build();
         client.newCall(request).enqueue(new okhttp3.Callback() {
             @Override
             public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
 
             }
+
             @Override
             public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
                 String json = response.body().string();
-                Log.d("dsadasd",json);
                 Gson gson=new GsonBuilder().create();
-                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
+                Article[] articles=gson.fromJson(json,Article[].class);
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         image4= findViewById(R.id.imageItem4);
-                        Picasso.with(MainActivity.this).load(article.getImagepath()).resize(100,100).centerCrop().into(image4);
+                        Picasso.with(MainActivity.this).load(articles[0].getImagepath()).resize(100,100).centerCrop().into(image4);
                         text4 = findViewById(R.id.title4);
-                        text4.setText(article.getTitle());
+                        text4.setText(articles[0].getTitle());
                         text4.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(context, DetailAllArticleBaiTap.class);
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
                                 intent.putExtra("ma",4);
                                 context.startActivity(intent);
                             }
                         });
-                        text4.setSingleLine(false);
-                        SpannableString content = new SpannableString(article.getTitle());
-                        content.setSpan(new UnderlineSpan(), 0, article.getTitle().length(), 0);
-                        text4.setText(content);
-                    }
-                });
 
-            }
-        });
-    }
-    private void getFearture5(Context context){
 
-        // Khởi tạo OkHttpClient để lấy dữ liệu.
-        OkHttpClient client = new OkHttpClient();
-
-        // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
-        Moshi moshi = new Moshi.Builder().build();
-        Request request = new Request.Builder()
-                .url(URL_API.url+"articles/5")
-                .build();
-        client.newCall(request).enqueue(new okhttp3.Callback() {
-            @Override
-            public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
-
-            }
-            @Override
-            public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
-                String json = response.body().string();
-                Log.d("dsadasd",json);
-                Gson gson=new GsonBuilder().create();
-                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
                         image5 = findViewById(R.id.imageItem5);
-                        Picasso.with(MainActivity.this).load(article.getImagepath()).resize(100,100).centerCrop().into(image5);
+                        Picasso.with(MainActivity.this).load(articles[1].getImagepath()).resize(100,100).centerCrop().into(image5);
                         text5 = findViewById(R.id.title5);
-                        text5.setText(article.getTitle());
+                        text5.setText(articles[1].getTitle());
                         text5.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(context, DetailAllArticleBaiTap.class);
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
                                 intent.putExtra("ma",5);
                                 context.startActivity(intent);
                             }
                         });
-                        text5.setSingleLine(false);
-                        SpannableString content = new SpannableString(article.getTitle());
-                        content.setSpan(new UnderlineSpan(), 0, article.getTitle().length(), 0);
-                        text5.setText(content);
-                    }
-                });
 
-            }
-        });
-    }
-    private void getFearture6(Context context){
-
-        // Khởi tạo OkHttpClient để lấy dữ liệu.
-        OkHttpClient client = new OkHttpClient();
-
-        // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
-        Moshi moshi = new Moshi.Builder().build();
-        Request request = new Request.Builder()
-                .url(URL_API.url+"articles/6")
-                .build();
-        client.newCall(request).enqueue(new okhttp3.Callback() {
-            @Override
-            public void onFailure(@NotNull okhttp3.Call call, @NotNull IOException e) {
-
-            }
-            @Override
-            public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
-                String json = response.body().string();
-                Log.d("dsadasd",json);
-                Gson gson=new GsonBuilder().create();
-                ArticleCategory article=gson.fromJson(json,ArticleCategory.class);
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
                         image6 = findViewById(R.id.imageItem6);
-                        Picasso.with(MainActivity.this).load(article.getImagepath()).resize(100,100).centerCrop().into(image6);
+                        Picasso.with(MainActivity.this).load(articles[2].getImagepath()).resize(100,100).centerCrop().into(image6);
                         text6 = findViewById(R.id.title6);
-                        text6.setText(article.getTitle());
+                        text6.setText(articles[2].getTitle());
                         text6.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
-                                Intent intent = new Intent(context, DetailAllArticleBaiTap.class);
+                                Intent intent = new Intent(context, DetailAllArticleBaiTapActivity.class);
                                 intent.putExtra("ma",6);
                                 context.startActivity(intent);
                             }
                         });
-                        text6.setSingleLine(false);
-                        SpannableString content = new SpannableString(article.getTitle());
-                        content.setSpan(new UnderlineSpan(), 0, article.getTitle().length(), 0);
-                        text6.setText(content);
                     }
                 });
 
             }
         });
     }
-    private void AddMenuCategory(Menu menu){
+
+    private void AddMenuCategory(Menu menu){//gsdfsdfdsfdsfsdfsdfsdfsdfsdfsdfsd
         OkHttpClient client = new OkHttpClient();
 
         // Khởi tạo Moshi adapter để biến đổi json sang model java (ở đây là User)
-        Moshi moshi = new Moshi.Builder().build();
-        Type articlesType = Types.newParameterizedType(List.class, Article.class);
-        final JsonAdapter<List<Article>> jsonAdapter = moshi.adapter(articlesType);
+
 
         // Tạo request lên server.
         Request request = new Request.Builder()
@@ -526,7 +588,7 @@ public class MainActivity extends AppCompatActivity {
                 });
             }
         });
-    }
+    }//sdfsd
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         // The action bar home/up action should open or close the drawer.

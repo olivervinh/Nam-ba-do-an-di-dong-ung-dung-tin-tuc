@@ -18,7 +18,7 @@
         <activity android:name=".ArticlesCategoryActivity" />
         <activity android:name=".SearchAllArticlesActivity" />
         <activity android:name=".UserManagerActivity" />
-        <activity android:name=".DetailAllArticleBaiTap" />
+        <activity android:name=".DetailAllArticleBaiTapActivity" />
         <activity android:name=".AllArticlesActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity">

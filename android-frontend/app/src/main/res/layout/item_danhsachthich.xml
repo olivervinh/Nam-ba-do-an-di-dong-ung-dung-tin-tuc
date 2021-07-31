@@ -20,11 +20,13 @@
 
     <TextView
         android:id="@+id/likeTitle"
-        android:layout_width="wrap_content"
+        android:layout_width="198dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="54dp"
         android:layout_marginTop="23dp"
+        android:layout_marginEnd="17dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewThich"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +36,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="43dp"
         android:layout_marginTop="26dp"
+        android:layout_marginEnd="114dp"
         android:text="Xem chi tiết"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewThich"
         app:layout_constraintTop_toBottomOf="@+id/likeTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

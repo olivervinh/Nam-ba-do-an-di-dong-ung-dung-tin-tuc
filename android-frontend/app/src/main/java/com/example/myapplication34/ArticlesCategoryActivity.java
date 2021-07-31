@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.myapplication34.adapters.AllArtclesAdapter;
+import com.example.myapplication34.models.ArticleCategory;
+import com.example.myapplication34.url.URL_API;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 import com.squareup.moshi.Types;

@@ -52,8 +52,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="21dp"
+        android:layout_marginEnd="31dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/edtUerMangerId" />
 
@@ -63,8 +65,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginTop="19dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/edtHoVaTenUserManager" />
 
@@ -74,8 +78,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="34dp"
         android:layout_marginTop="17dp"
+        android:layout_marginEnd="30dp"
         android:ems="10"
         android:inputType="textPersonName|textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/edtUsernameUserManager" />
 
@@ -85,7 +91,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="248dp"
         android:layout_marginTop="125dp"
+        android:layout_marginEnd="61dp"
         android:text="Đăng xuất"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnUserManagerSave" />
 
@@ -95,7 +103,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="289dp"
         android:layout_marginTop="25dp"
+        android:layout_marginEnd="34dp"
         android:text="Save"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtPasswordUserManager" />
 
@@ -105,8 +115,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:text="Quản lí tài khoản"
         android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnQuayLaiUsermanager"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -126,8 +138,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="95dp"
         android:layout_marginTop="19dp"
+        android:layout_marginEnd="31dp"
         android:ems="10"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView15"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
@@ -147,7 +161,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="69dp"
         android:layout_marginTop="21dp"
+        android:layout_marginEnd="28dp"
         android:text="Danh sách thích"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnDSLuu"
         app:layout_constraintTop_toBottomOf="@+id/btnUserManagerSave" />
 </androidx.constraintlayout.widget.ConstraintLayout>

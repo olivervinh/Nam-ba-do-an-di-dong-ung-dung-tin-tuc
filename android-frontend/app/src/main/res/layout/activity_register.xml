@@ -22,8 +22,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="116dp"
         android:layout_marginTop="64dp"
+        android:layout_marginEnd="178dp"
         android:text="Đăng kí"
         android:textSize="35sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,9 +35,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginTop="48dp"
+        android:layout_marginEnd="126dp"
         android:ems="10"
         android:hint="FullName"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titlebaitap1" />
 
@@ -45,9 +49,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="126dp"
         android:ems="10"
         android:hint="gmail"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtFullnameRegister" />
 
@@ -57,9 +63,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
         android:layout_marginTop="40dp"
+        android:layout_marginEnd="126dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtUsernameRegister" />
 
@@ -69,7 +77,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="197dp"
         android:layout_marginTop="56dp"
+        android:layout_marginEnd="126dp"
         android:text="Đăng kí"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtPasswordRegister" />
 

@@ -20,11 +20,13 @@
 
     <TextView
         android:id="@+id/titileSaveddd"
-        android:layout_width="wrap_content"
+        android:layout_width="194dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="21dp"
+        android:layout_marginEnd="38dp"
         android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageViewSave"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -32,9 +34,9 @@
         android:id="@+id/btnXemCTSSS"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="68dp"
         android:layout_marginTop="43dp"
+        android:layout_marginEnd="84dp"
         android:text="Xem chi tiết"
-        app:layout_constraintStart_toEndOf="@+id/imageViewSave"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titileSaveddd" />
 </androidx.constraintlayout.widget.ConstraintLayout>

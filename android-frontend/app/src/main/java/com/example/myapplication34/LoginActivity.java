@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.myapplication34.url.URL_API;
+import com.example.myapplication34.models.UserResponse;
 import com.google.gson.Gson;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
@@ -24,13 +26,9 @@ import java.io.IOException;
 import java.lang.reflect.Type;
 
 import okhttp3.FormBody;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -77,7 +75,7 @@ public class LoginActivity extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(LoginActivity.this, "Đang nhập thất bại", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "Đang nhập thất bại do lỗi kết nối", Toast.LENGTH_SHORT).show();
                             }
                         });
                     }
@@ -85,40 +83,44 @@ public class LoginActivity extends AppCompatActivity {
                     public void onResponse(@NotNull okhttp3.Call call, @NotNull okhttp3.Response response) throws IOException {
                         String json;
                         json = response.body().string();
-                        if(json!=null){
-                            Type usersType = Types.newParameterizedType(UserResponse.class);
-                            final JsonAdapter<UserResponse> jsonAdapter = moshi.adapter(usersType);
-                            UserResponse userResponse = jsonAdapter.fromJson(json);
-                            Gson g = new Gson(); UserResponse p = g.fromJson(json, UserResponse.class);
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                            intent.putExtra("name",p.getFullname());
-                            intent.putExtra("username",p.getUsername());
-                            intent.putExtra("password",p.getPassword());
-                            SharedPreferences sharedPref = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-                            SharedPreferences.Editor editor = sharedPref.edit();
-                            editor.putInt("id", p.getId());
-                            editor.putString("fullname", p.getFullname());
-                            editor.putString("username", p.getUsername());
-                            editor.putString("password", p.getPassword());
-                            editor.commit();
-                            startActivity(intent);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    Toast.makeText(LoginActivity.this, "Đang nhập thành công", Toast.LENGTH_SHORT).show();
+                        Log.d("Json dang nhap",json);
 
-                                }
-                            });
-                        }
-                        else{
+                      if(json==""){
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    Toast.makeText(LoginActivity.this, "Đang nhập thất bại", Toast.LENGTH_LONG).show();
+                                    Toast.makeText(LoginActivity.this, "Đang nhập thất bại do sai password hoặc mật khẩu", Toast.LENGTH_LONG).show();
                                 }
                             });
 
                         }
+                      else{
+                          try{
+                              Gson g = new Gson(); UserResponse p = g.fromJson(json, UserResponse.class);
+                              Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                              intent.putExtra("name",p.getFullname());
+                              intent.putExtra("username",p.getUsername());
+                              intent.putExtra("password",p.getPassword());
+                              SharedPreferences sharedPref = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                              SharedPreferences.Editor editor = sharedPref.edit();
+                              editor.putInt("id", p.getId());
+                              editor.putString("fullname", p.getFullname());
+                              editor.putString("username", p.getUsername());
+                              editor.putString("password", p.getPassword());
+                              editor.commit();
+                              startActivity(intent);
+                              runOnUiThread(new Runnable() {
+                                  @Override
+                                  public void run() {
+                                      Toast.makeText(LoginActivity.this, "Đang nhập thành công", Toast.LENGTH_SHORT).show();
+
+                                  }
+                              });
+                          }
+                          catch (Exception ex){
+
+                          }
+                      }
 
                     }
                 });

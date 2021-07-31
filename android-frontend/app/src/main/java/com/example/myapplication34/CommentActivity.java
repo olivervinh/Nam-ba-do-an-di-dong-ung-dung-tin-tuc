@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.myapplication34.url.URL_API;
+
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
@@ -37,7 +39,7 @@ public class CommentActivity extends AppCompatActivity {
         btnQuayLai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(CommentActivity.this, DetailAllArticleBaiTap.class);
+                Intent intent1 = new Intent(CommentActivity.this, DetailAllArticleBaiTapActivity.class);
                 intent1.putExtra("ma",IdArticle);
                 startActivity(intent1);
             }
@@ -73,7 +75,7 @@ public class CommentActivity extends AppCompatActivity {
                             public void run() {
 
                                 Toast.makeText(CommentActivity.this, "Gửi binh luận thành công", Toast.LENGTH_SHORT).show();
-                                Intent intent2 = new Intent(CommentActivity.this, DetailAllArticleBaiTap.class);
+                                Intent intent2 = new Intent(CommentActivity.this, DetailAllArticleBaiTapActivity.class);
                                 intent2.putExtra("ma",IdArticle);
                                 startActivity(intent2);
                             }

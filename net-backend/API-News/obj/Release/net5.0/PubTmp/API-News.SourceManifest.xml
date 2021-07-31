@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="D:\do-an-di-dong\net-backend\API-News\obj\Release\net5.0\PubTmp\Out\" />
+  <dbfullsql path="D:\do-an-di-dong\net-backend\API-News\obj\Release\net5.0\PubTmp\EFSQLScripts\API_News.Data.DPContext.sql" />
+</sitemanifest>

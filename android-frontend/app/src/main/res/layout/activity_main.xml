@@ -18,6 +18,36 @@
 
             <!-- The ActionBar displayed at the top -->
 
+            <TextView
+                android:id="@+id/textView29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="157dp"
+                android:layout_marginTop="60dp"
+                android:layout_marginEnd="174dp"
+                android:layout_marginBottom="29dp"
+                android:text="Giáo dục"
+                android:textColor="#7B1FA2"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/include11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include7" />
+
+            <TextView
+                android:id="@+id/textView32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="159dp"
+                android:layout_marginTop="48dp"
+                android:layout_marginEnd="172dp"
+                android:text="Thể thao"
+                android:textColor="#7B1FA2"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include11" />
+
             <VideoView
                 android:id="@+id/videoView2"
                 android:layout_width="221dp"
@@ -33,8 +63,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="164dp"
                 android:layout_marginTop="28dp"
-                android:text="Tin nóng"
+                android:layout_marginEnd="168dp"
+                android:text="Nổi bật"
+                android:textColor="#7B1FA2"
                 android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
 
@@ -50,10 +83,10 @@
                 layout="@layout/item1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="30dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <include
                 android:id="@+id/include3"
@@ -61,26 +94,60 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="32dp"
+                app:layout_constraintEnd_toStartOf="@+id/include2"
                 app:layout_constraintStart_toEndOf="@+id/include"
-                app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <include
+                android:id="@+id/include15"
+                layout="@layout/item13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+            <include
+                android:id="@+id/include10"
+                layout="@layout/item14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="37dp"
+                app:layout_constraintEnd_toStartOf="@+id/include16"
+                app:layout_constraintStart_toEndOf="@+id/include15"
+                app:layout_constraintTop_toBottomOf="@+id/textView32" />
+
+            <include
+                android:id="@+id/include16"
+                layout="@layout/item15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
             <include
                 android:id="@+id/include2"
                 layout="@layout/item3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:layout_marginEnd="47dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="35dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/viewFlipper" />
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
             <include
                 android:id="@+id/include"
                 layout="@layout/item4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="35dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -91,7 +158,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="44dp"
+                android:layout_marginEnd="35dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView19" />
 
@@ -100,10 +167,72 @@
                 layout="@layout/item5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toStartOf="@+id/include2"
                 app:layout_constraintStart_toEndOf="@+id/include"
                 app:layout_constraintTop_toBottomOf="@+id/textView19" />
+
+            <include
+                android:id="@+id/include9"
+                layout="@layout/item7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="38dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <include
+                android:id="@+id/include7"
+                layout="@layout/item8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                app:layout_constraintEnd_toStartOf="@+id/include8"
+                app:layout_constraintStart_toEndOf="@+id/include9"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <include
+                android:id="@+id/include11"
+                layout="@layout/item11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="29dp"
+                app:layout_constraintEnd_toStartOf="@+id/include12"
+                app:layout_constraintHorizontal_bias="0.022"
+                app:layout_constraintStart_toEndOf="@+id/include13"
+                app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+            <include
+                android:id="@+id/include13"
+                layout="@layout/item10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="35dp"
+                android:layout_marginTop="29dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+            <include
+                android:id="@+id/include12"
+                layout="@layout/item12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="29dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView29" />
+
+            <include
+                android:id="@+id/include8"
+                layout="@layout/item9"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_marginEnd="35dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
             <ViewFlipper
                 android:id="@+id/viewFlipper"
@@ -188,10 +317,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="139dp"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="140dp"
+                android:layout_marginBottom="16dp"
                 android:text="Xem tất cả tin"
+                app:layout_constraintBottom_toTopOf="@+id/videoView2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/include6" />
+                app:layout_constraintTop_toBottomOf="@+id/include10" />
 
             <TextView
                 android:id="@+id/txtXinChao"
@@ -208,9 +342,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="168dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="175dp"
                 android:text="Thời sự"
+                android:textColor="#7B1FA2"
                 android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/include3" />
 
@@ -224,6 +361,20 @@
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/viewAllbtn" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="168dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="171dp"
+                android:text="Thế giới"
+                android:textColor="#7B1FA2"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include6" />
 
             <!-- The main content view where fragments are loaded -->
 

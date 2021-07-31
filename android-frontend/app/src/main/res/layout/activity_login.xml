@@ -12,10 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="102dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
         android:text="1234567"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtUserNameLogin" />
 
@@ -25,10 +27,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="96dp"
         android:layout_marginTop="20dp"
+        android:layout_marginEnd="102dp"
         android:ems="10"
         android:hint="Username"
         android:inputType="textPersonName"
         android:text="admin@gmail.com"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -38,7 +42,9 @@
         android:layout_height="56dp"
         android:layout_marginStart="180dp"
         android:layout_marginTop="28dp"
+        android:layout_marginEnd="119dp"
         android:text="LOGIN"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edtPasswordLogin" />
 
@@ -48,7 +54,9 @@
         android:layout_height="179dp"
         android:layout_marginStart="56dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="43dp"
         android:src="@drawable/logo_default"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

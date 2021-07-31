@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="API-News20210719065033" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\do-an-di-dong\\net-backend\\API-News\\obj\\Release\\net5\.0\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="API_News.Data.DPContext" description="" value="Data Source=tcp:api-newsdbserver.database.windows.net,1433;Initial Catalog=API-News_db;User Id=a@api-newsdbserver;Password=Eysuo147852" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^D:\\do-an-di-dong\\net-backend\\API-News\\obj\\Release\\net5\.0\\PubTmp\\EFSQLScripts\\API_News\.Data\.DPContext\.sql$" />
+  </parameter>
+</parameters>

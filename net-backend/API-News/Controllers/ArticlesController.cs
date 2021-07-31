@@ -23,7 +23,7 @@ namespace API_News.Controllers
         [HttpGet("laytheoloai/{id}")]
         public async Task<ActionResult<IEnumerable<ArticleCategoryViewModel>>> GetArticlesCategory(int id)
         {
-            var kb = from a in _context.Articles.Where(s=>s.IdCategory==id)
+            var kb = from a in _context.Articles.Where(s => s.IdCategory == id)
                      join c in _context.Categories
                      on a.IdCategory equals c.Id
                      select new ArticleCategoryViewModel()
@@ -66,9 +66,9 @@ namespace API_News.Controllers
             return await _context.Articles.ToListAsync();
         }
         [HttpPost("search")]
-        public async Task<ActionResult<ICollection<ArticleCategoryViewModel>>> SearchArticleAsync([FromForm]string search)
+        public async Task<ActionResult<ICollection<ArticleCategoryViewModel>>> SearchArticleAsync([FromForm] string search)
         {
-            var kb = from a in _context.Articles.Where(s => s.Status == 1||  s.Content.Contains(search) || s.Title.Contains(search)||s.Brief.Contains(search))
+            var kb = from a in _context.Articles.Where(s => s.Status == 1)
                      join c in _context.Categories
                      on a.IdCategory equals c.Id
                      select new ArticleCategoryViewModel()
@@ -82,12 +82,12 @@ namespace API_News.Controllers
                          Status = a.Status,
                          Title = a.Title,
                      };
-         
-            return await kb.ToListAsync();
+
+            return await kb.Where(s => s.NameCategory.Contains(search) || s.Content.Contains(search) || s.Title.Contains(search) || s.Brief.Contains(search)).ToListAsync();
         }
 
-       // GET: api/Articles/5
-       [HttpGet("{id}")]
+        // GET: api/Articles/5
+        [HttpGet("{id}")]
         public async Task<ActionResult<ArticleCategoryViewModel>> GetArticle(int id)
         {
             var kb = from a in _context.Articles
@@ -104,10 +104,10 @@ namespace API_News.Controllers
                          Status = a.Status,
                          Title = a.Title,
                      };
-            return await kb.FirstOrDefaultAsync(s=>s.Id==id);
+            return await kb.FirstOrDefaultAsync(s => s.Id == id);
         }
 
-    
+
         // POST: api/Articles
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
@@ -146,7 +146,7 @@ namespace API_News.Controllers
             //lay ra tin tuc cung loai
             Article articleGetIdACate = await _context.Articles.FindAsync(id);
             var kb = from a in _context.Articles
-                     join c in _context.Categories.Where(s=>s.Id== articleGetIdACate.IdCategory)
+                     join c in _context.Categories.Where(s => s.Id == articleGetIdACate.IdCategory)
                      on a.IdCategory equals c.Id
                      select new ArticleCategoryViewModel()
                      {
@@ -159,9 +159,33 @@ namespace API_News.Controllers
                          Status = a.Status,
                          Title = a.Title,
                      };
-            return await kb.Where(s=>s.Id!=id).ToListAsync();
+            return await kb.Where(s => s.Id != id).ToListAsync();
         }
-      
+        [HttpGet("noibats")]
+        public async Task<ActionResult<IEnumerable<Article>>> GetCateoriesInIndexPage1()
+        {
+            return await _context.Articles.Where(s => s.IdCategory == 1).Take(3).ToListAsync();
+        }
+        [HttpGet("thoisus")]
+        public async Task<ActionResult<IEnumerable<Article>>> GetCateoriesInIndexPage2()
+        {
+            return await _context.Articles.Where(s => s.IdCategory == 2).Take(3).ToListAsync();
+        }
+        [HttpGet("thegiois")]
+        public async Task<ActionResult<IEnumerable<Article>>> GetCateoriesInIndexPage3()
+        {
+            return await _context.Articles.Where(s => s.IdCategory == 3).Take(3).ToListAsync();
+        }
+        [HttpGet("giaoducs")]
+        public async Task<ActionResult<IEnumerable<Article>>> GetCateoriesInIndexPage4()
+        {
+            return await _context.Articles.Where(s => s.IdCategory == 4).Take(3).ToListAsync();
+        }
+        [HttpGet("thethaos")]
+        public async Task<ActionResult<IEnumerable<Article>>> GetCateoriesInIndexPage5()
+        {
+            return await _context.Articles.Where(s => s.IdCategory == 5).Take(3).ToListAsync();
+        }
 
     }
 }
